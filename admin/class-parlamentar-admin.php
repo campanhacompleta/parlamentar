@@ -137,6 +137,59 @@ class Parlamentar_Admin {
 		);
 	
 		register_post_type( 'parlamentar', $args );
+
 	}
+
+	/**
+	 * Create a new taxonomy for the custom post type
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @uses 	register_taxonomy()
+	 */
+	public function register_taxonomy() {
+
+		$tax_name = 'parlamentar_type';
+
+		$args = array (
+			'hierarchical' => true,
+			'label' => __( 'Type' ),
+			'show_ui' => true,
+			'query_var' => true,
+			'show_admin_column' => true,
+		);
+
+		register_taxonomy( $tax_name, 'parlamentar', $args );
+
+	}
+
+	/**
+	 * Create a meta box area
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function add_meta_box() {
+		// add_meta_box( $id, $title, $callback, $screen, $context, $priority, $callback_args );
+		add_meta_box(
+			'parlamentar_information',
+			apply_filters( 'parlamentar-information-title', __( 'Information', 'parlamentar' ) ),
+			array( $this, 'callback_meta_box_parlamentar_information' ),
+			'parlamentar',
+			'normal',
+			'default'
+		);
+	} 
+
+	/**
+	 * [callback_metabox_job_location description]
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @return [type] [description]
+	 */
+	public function callback_meta_box_parlamentar_information( $object, $box ) {
+		include( plugin_dir_path( __FILE__ ) . 'partials/parlamentar-meta-box-view.php' );
+	} 
 
 }

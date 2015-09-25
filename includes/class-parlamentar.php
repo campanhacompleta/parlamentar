@@ -154,7 +154,11 @@ class Parlamentar {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
 		$this->loader->add_action( 'init', $plugin_admin, 'register_post_type' );
+		$this->loader->add_action( 'init', $plugin_admin, 'register_taxonomy' );
+
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_box' );
 
 	}
 
