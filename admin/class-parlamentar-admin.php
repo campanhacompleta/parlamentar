@@ -52,6 +52,91 @@ class Parlamentar_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		$this->meta_fields_prefix = '_parlamentar-info-';
+		$this->meta_fields = array (
+
+			'Nome completo' => array (
+				'slug' => 'full-name',
+				'title' => __('Nome completo', 'parlamentar'),
+				'tip' => __('', 'parlamentar'),
+			),
+			
+			'Data de nascimento' => array
+			(
+				'slug' => 'birthday',
+				'title' => __('Data de nascimento', 'parlamentar'),
+				'tip' => __('', 'parlamentar'),
+			),
+			
+			'Naturalidade' => array (
+				'slug' => 'nationality',
+				'title' => __('Naturalidade', 'parlamentar'),
+				'tip' => __('', 'parlamentar'),
+			),
+			
+			'Estado civil' => array (
+				'slug' => 'marital-status',
+				'title' => __('Estado civil', 'parlamentar'),
+				'tip' => __('', 'parlamentar'),
+			),
+			
+			'Ocupação' => array (
+				'slug' => 'occupation',
+				'title' => __('Ocupação', 'parlamentar'),
+			),
+
+			'Escolaridade' => array (
+				'slug' => 'education',
+				'title' => __('Escolaridade', 'parlamentar'),
+			),
+
+			'Link para prestação de contas do mandato' => array (
+				'slug' => 'political-accountability',
+				'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
+			),
+
+			'Link para prestação de contas ao TRE' => array (
+				'slug' => 'accountability',
+				'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
+			),
+
+			'Endereço' => array (
+				'slug' => 'address',
+				'title' => __( 'Endereço', 'parlamentar' ),
+			),
+
+			'Telephone' => array (
+				'slug' => 'telephone',
+				'title' => __( 'Telephone', 'parlamentar' ),
+			),
+
+			'Email' => array (
+				'slug' => 'email',
+				'title' => __( 'Email', 'parlamentar' ),
+			),
+
+			'Facebook' => array (
+				'slug' => 'facebook',
+				'title' => __( 'Facebook', 'parlamentar' ),
+			),
+
+			'Twitter' => array (
+				'slug' => 'twitter',
+				'title' => __( 'Twitter', 'parlamentar' ),
+			),
+
+			'Wikipedia' => array (
+				'slug' => 'wikipedia',
+				'title' => __( 'Wikipedia', 'parlamentar' ),
+			),
+
+			'Website' => array (
+				'slug' => 'website',
+				'title' => __( 'Website', 'parlamentar' ),
+			),
+
+		);
+
 	}
 
 	/**
@@ -186,10 +271,64 @@ class Parlamentar_Admin {
 	 *
 	 * @since 	1.0.0
 	 * @access 	public
-	 * @return [type] [description]
+	 * @param 	object 		$object 		The post object
 	 */
 	public function callback_meta_box_parlamentar_information( $object, $box ) {
 		include( plugin_dir_path( __FILE__ ) . 'partials/parlamentar-meta-box-view.php' );
-	} 
+	}
+
+	/**
+	 * Save metabox data
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @param 	int 		$post_id 		The post ID
+	 * @param 	object 		$object 		The post object
+	 * @return 	void
+	 */
+	public function save_post( $post_id ) {
+
+		/*
+		 * We need to verify this came from the our screen and with proper authorization,
+		 * because save_post can be triggered at other times.
+		 */
+		$nonce = $_POST['parlamentar_nonce'];
+		
+		// Check if our nonce is set.
+		if ( ! isset( $_POST['parlamentar_nonce'] ) ) {
+			return $post_id;
+		}
+		
+		// Verify that the nonce is valid
+		if ( ! wp_verify_nonce( $nonce, $this->plugin_name ) ) {
+			return $post_id;
+		}
+		
+		// The form is not submitted yet
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return $post_id;
+		}
+		
+		// Check the user's permissions
+		if ( 'parlamentar' !== $_POST['post_type'] ) {
+				return $post_id;
+		}
+	
+		// Save the data
+		foreach ( $this->meta_fields as $key => $field ) {
+			$slug = $this->meta_fields_prefix . $field['slug'];
+
+			$old = get_post_meta( $post_id, $slug, true );
+			$new = sanitize_text_field( $_POST[$slug] );
+			
+			if ( $new && $new != $old ) {
+			    update_post_meta( $post_id, $slug, $new );  
+			}
+			elseif ( '' == $new && $old ) {
+				delete_post_meta( $post_id, $slug, $old );  
+			}
+		}
+
+	}
 
 }
