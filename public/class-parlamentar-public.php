@@ -100,4 +100,21 @@ class Parlamentar_Public {
 
 	}
 
+	/**
+	 * Verify if the appropriate single-parlamentar.php template is present in active template directory
+	 * Otherwise it will use the template present in plugin's directory
+	 * 
+	 * @since	1.0.0
+	 * @uses locate_template()
+	 */
+	function template_include( $template ){
+
+	    if ( is_singular( 'parlamentar' ) && locate_template( array( 'single-parlamentar.php' ) ) == '' ) {
+	        $template = dirname( __FILE__ ) . '/templates/single-parlamentar.php';
+	    }
+
+	    return $template;
+
+	}
+
 }
