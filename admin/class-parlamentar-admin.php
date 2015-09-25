@@ -100,4 +100,43 @@ class Parlamentar_Admin {
 
 	}
 
+	/**
+	 * Create the post type
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @uses 	register_post_type()
+	 */
+	public function register_post_type() {
+	
+		$args = array (
+			'label' => __( 'Parlamentar','fluxo' ),
+			'labels' => $labels,
+			'description' => __( 'Parlamentar','fluxo' ),
+			'public' => true,
+			'publicly_queryable' => true, // public
+			//'exclude_from_search' => '', // public
+			'show_ui' => true, // public
+			'show_in_menu' => true,
+			'menu_position' => 5,
+			// 'menu_icon' => '',
+			'capability_type' => 'post',
+			'map_meta_cap' => true,
+			'hierarchical' => false,
+			'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
+			//'register_meta_box_cb' => array($this, 'fluxo_emrede_custom_meta'),
+			//'taxonomies' => array('post_tag','category'),
+			'permalink_epmask' => 'EP_PERMALINK ',
+			'has_archive' => true,
+			'rewrite' => true,
+			'query_var' => true,
+			'can_export' => true
+			//'show_in_nav_menus' => '', // public
+			//'_builtin' => '', // Core
+			//'_edit_link' => '' // Core
+		);
+	
+		register_post_type( 'parlamentar', $args );
+	}
+
 }
