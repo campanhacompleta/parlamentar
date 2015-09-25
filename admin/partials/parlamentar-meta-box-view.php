@@ -62,12 +62,12 @@ $this->_customs = array(
 	),
 
 	'Link para prestação de contas do mandato' => array (
-		'slug' => 'contas-mandato',
+		'slug' => 'political-accountability',
 		'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
 	),
 
 	'Link para prestação de contas ao TRE' => array (
-		'slug' => 'contas-tre',
+		'slug' => 'accountability',
 		'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
 	),
 
