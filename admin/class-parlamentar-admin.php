@@ -123,7 +123,7 @@ class Parlamentar_Admin {
 			'capability_type' => 'post',
 			'map_meta_cap' => true,
 			'hierarchical' => false,
-			'supports' => array('title', 'editor', 'author', 'excerpt', 'trackbacks','thumbnail', 'revisions', 'comments'),
+			'supports' => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions' ),
 			//'register_meta_box_cb' => array($this, 'fluxo_emrede_custom_meta'),
 			//'taxonomies' => array('post_tag','category'),
 			'permalink_epmask' => 'EP_PERMALINK ',
