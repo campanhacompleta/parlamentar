@@ -26,9 +26,9 @@ wp_nonce_field( $this->plugin_name, $this->plugin_name . '_nonce' );
 
 $this->_customs = array(
 
-	'Nome complato' => array (
+	'Nome completo' => array (
 		'slug' => 'full-name',
-		'title' => __('Nome complato', 'parlamentar'),
+		'title' => __('Nome completo', 'parlamentar'),
 		'tip' => __('', 'parlamentar'),
 	),
 	
