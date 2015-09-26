@@ -17,11 +17,46 @@ get_header(); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php get_template_part( 'template-parts/content', 'single' ); ?>
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<header class="entry-header">
+					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					<?php the_terms( $post->ID, 'parlamentar_type', '<div class="entry-meta">', ', ', '</div>' ); ?>
+
+					<?php if ( has_post_thumbnail() ) : ?>
+						<div class="entry-image">
+							<?php the_post_thumbnail( 'large' ); ?>
+						</div><!-- .entry-image -->
+					<?php endif; ?>
+				</header><!-- .entry-header -->
+
+				<?php 
+				$post_metas = get_post_meta( $post->ID, '', true );
+
+				echo '<ul>';
+				foreach( $post_metas as $key => $value ) {
+
+					if ( strpos( $key, '_parlamentar') === false ) {
+						continue;
+					}
+
+				    echo '<li>' . $value[0] . '</li>';
+				}
+				echo '</ul>';
+				?>
+
+				<div class="entry-content">
+					<?php the_content(); ?>
+				</div><!-- .entry-content -->
+
+				<footer class="entry-footer">
+					<?php publico_entry_footer(); ?>
+				</footer><!-- .entry-footer -->
+			</article><!-- #post-## -->
 
 		<?php endwhile; // End of the loop. ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>
