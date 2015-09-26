@@ -69,7 +69,7 @@ class Parlamentar_Admin {
 			),
 			
 			'Naturalidade' => array (
-				'slug' => 'nationality',
+				'slug' => 'birthplace',
 				'title' => __( 'Naturalidade', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 			),
