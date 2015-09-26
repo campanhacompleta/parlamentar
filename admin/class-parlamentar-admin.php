@@ -57,37 +57,37 @@ class Parlamentar_Admin {
 
 			'Nome completo' => array (
 				'slug' => 'full-name',
-				'title' => __('Nome completo', 'parlamentar'),
-				'tip' => __('', 'parlamentar'),
+				'title' => __( 'Nome completo', 'parlamentar' ),
+				'tip' => __( '', 'parlamentar' ),
 			),
 			
 			'Data de nascimento' => array
 			(
 				'slug' => 'birthday',
-				'title' => __('Data de nascimento', 'parlamentar'),
-				'tip' => __('', 'parlamentar'),
+				'title' => __( 'Data de nascimento', 'parlamentar' ),
+				'tip' => __( '', 'parlamentar' ),
 			),
 			
 			'Naturalidade' => array (
 				'slug' => 'nationality',
-				'title' => __('Naturalidade', 'parlamentar'),
-				'tip' => __('', 'parlamentar'),
+				'title' => __( 'Naturalidade', 'parlamentar' ),
+				'tip' => __( '', 'parlamentar' ),
 			),
 			
 			'Estado civil' => array (
 				'slug' => 'marital-status',
-				'title' => __('Estado civil', 'parlamentar'),
-				'tip' => __('', 'parlamentar'),
+				'title' => __( 'Estado civil', 'parlamentar' ),
+				'tip' => __( '', 'parlamentar' ),
 			),
 			
 			'Ocupação' => array (
 				'slug' => 'occupation',
-				'title' => __('Ocupação', 'parlamentar'),
+				'title' => __( 'Ocupação', 'parlamentar' ),
 			),
 
 			'Escolaridade' => array (
 				'slug' => 'education',
-				'title' => __('Escolaridade', 'parlamentar'),
+				'title' => __( 'Escolaridade', 'parlamentar' ),
 			),
 
 			'Link para prestação de contas do mandato' => array (
@@ -209,8 +209,8 @@ class Parlamentar_Admin {
 			'map_meta_cap' => true,
 			'hierarchical' => false,
 			'supports' => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions' ),
-			//'register_meta_box_cb' => array($this, 'fluxo_emrede_custom_meta'),
-			//'taxonomies' => array('post_tag','category'),
+			//'register_meta_box_cb' => array($this, 'fluxo_emrede_custom_meta' ),
+			//'taxonomies' => array('post_tag','category' ),
 			'permalink_epmask' => 'EP_PERMALINK ',
 			'has_archive' => true,
 			'rewrite' => true,
