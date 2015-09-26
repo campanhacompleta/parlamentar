@@ -66,6 +66,7 @@ class Parlamentar_Admin {
 				'slug' => 'birthday',
 				'title' => __( 'Data de nascimento', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
+				'type' => 'date'
 			),
 			
 			'Naturalidade' => array (
@@ -93,11 +94,13 @@ class Parlamentar_Admin {
 			'Link para prestação de contas do mandato' => array (
 				'slug' => 'political-accountability',
 				'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 			'Link para prestação de contas ao TRE' => array (
 				'slug' => 'accountability',
 				'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 			'Endereço' => array (
@@ -113,26 +116,31 @@ class Parlamentar_Admin {
 			'Email' => array (
 				'slug' => 'email',
 				'title' => __( 'Email', 'parlamentar' ),
+				'type' => 'email'
 			),
 
 			'Facebook' => array (
 				'slug' => 'facebook',
 				'title' => __( 'Facebook', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 			'Twitter' => array (
 				'slug' => 'twitter',
 				'title' => __( 'Twitter', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 			'Wikipedia' => array (
 				'slug' => 'wikipedia',
 				'title' => __( 'Wikipedia', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 			'Website' => array (
 				'slug' => 'website',
 				'title' => __( 'Website', 'parlamentar' ),
+				'type' => 'url'
 			),
 
 		);
@@ -319,7 +327,16 @@ class Parlamentar_Admin {
 			$slug = $this->meta_fields_prefix . $field['slug'];
 
 			$old = get_post_meta( $post_id, $slug, true );
-			$new = sanitize_text_field( $_POST[$slug] );
+
+			if ( $field['type'] == 'email' ) {
+				$new = sanitize_email( $_POST[$slug] );
+			}
+			elseif ( $field['type'] == 'url') {
+				$new = esc_url_raw( $_POST[$slug] );
+			}
+			else {
+				$new = sanitize_text_field( $_POST[$slug] );
+			}
 			
 			if ( $new && $new != $old ) {
 			    update_post_meta( $post_id, $slug, $new );  
