@@ -117,4 +117,19 @@ class Parlamentar_Public {
 
 	}
 
+	/**
+	 * Include archive template file
+	 * 
+	 * @since	1.0.0
+	 */
+	function include_archive_template( $template ) {
+
+	    if ( is_post_type_archive ( 'parlamentar' ) ) {
+	        $template = dirname( __FILE__ ) . '/templates/archive-parlamentar.php';
+	    }
+
+	    return $template;
+
+	}
+
 }
