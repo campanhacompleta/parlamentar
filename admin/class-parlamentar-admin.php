@@ -59,6 +59,7 @@ class Parlamentar_Admin {
 				'slug' => 'full-name',
 				'title' => __( 'Nome completo', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
+				'type' => '',
 			),
 			
 			'Data de nascimento' => array
@@ -66,81 +67,87 @@ class Parlamentar_Admin {
 				'slug' => 'birthday',
 				'title' => __( 'Data de nascimento', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
-				'type' => 'date'
+				'type' => 'date',
 			),
 			
 			'Naturalidade' => array (
 				'slug' => 'birthplace',
 				'title' => __( 'Naturalidade', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
+				'type' => '',
 			),
 			
 			'Estado civil' => array (
 				'slug' => 'marital-status',
 				'title' => __( 'Estado civil', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
+				'type' => '',
 			),
 			
 			'Ocupação' => array (
 				'slug' => 'occupation',
 				'title' => __( 'Ocupação', 'parlamentar' ),
+				'type' => '',
 			),
 
 			'Escolaridade' => array (
 				'slug' => 'education',
 				'title' => __( 'Escolaridade', 'parlamentar' ),
+				'type' => '',
 			),
 
 			'Link para prestação de contas do mandato' => array (
 				'slug' => 'political-accountability',
 				'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 			'Link para prestação de contas ao TRE' => array (
 				'slug' => 'accountability',
 				'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 			'Endereço' => array (
 				'slug' => 'address',
 				'title' => __( 'Endereço', 'parlamentar' ),
+				'type' => '',
 			),
 
 			'Telephone' => array (
 				'slug' => 'telephone',
 				'title' => __( 'Telephone', 'parlamentar' ),
+				'type' => '',
 			),
 
 			'Email' => array (
 				'slug' => 'email',
 				'title' => __( 'Email', 'parlamentar' ),
-				'type' => 'email'
+				'type' => 'email',
 			),
 
 			'Facebook' => array (
 				'slug' => 'facebook',
 				'title' => __( 'Facebook', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 			'Twitter' => array (
 				'slug' => 'twitter',
 				'title' => __( 'Twitter', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 			'Wikipedia' => array (
 				'slug' => 'wikipedia',
 				'title' => __( 'Wikipedia', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 			'Website' => array (
 				'slug' => 'website',
 				'title' => __( 'Website', 'parlamentar' ),
-				'type' => 'url'
+				'type' => 'url',
 			),
 
 		);
@@ -204,7 +211,6 @@ class Parlamentar_Admin {
 	
 		$args = array (
 			'label' => __( 'Parlamentar','fluxo' ),
-			'labels' => $labels,
 			'description' => __( 'Parlamentar','fluxo' ),
 			'public' => true,
 			'publicly_queryable' => true, // public
