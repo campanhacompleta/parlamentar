@@ -52,6 +52,23 @@ function deactivate_parlamentar() {
 register_activation_hook( __FILE__, 'activate_parlamentar' );
 register_deactivation_hook( __FILE__, 'deactivate_parlamentar' );
 
+function check_parlamentar_rewrite() {
+	$rules = get_option( 'rewrite_rules' );
+	$found = false;
+	foreach ($rules as $rule)
+	{
+		if(strpos($rule, 'palamentar') !== false)
+		{
+			$found = true;
+			break;
+		}
+	}
+	if ( ! $found ) {
+		global $wp_rewrite; $wp_rewrite->flush_rules();
+	}
+}
+add_action( 'wp_loaded','check_parlamentar_rewrite' );
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
