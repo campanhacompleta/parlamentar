@@ -158,6 +158,8 @@ class Parlamentar {
 		$this->loader->add_action( 'init', $plugin_admin, 'register_post_type' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_taxonomy' );
 
+		$this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_image_sizes' );
+
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_box' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post' );
 

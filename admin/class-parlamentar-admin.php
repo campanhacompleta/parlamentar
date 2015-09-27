@@ -363,4 +363,14 @@ class Parlamentar_Admin {
 
 	}
 
+	/**
+	 * Add custom image sizes
+	 * 
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function add_image_sizes() {
+		add_image_size( 'parlamentar-archive', 250, 250, true );
+	}
+
 }
