@@ -3,10 +3,39 @@
  * included in this file.
  */
 
+.parlamentar-list:before,
+.parlamentar-list:after {
+	content: "";
+	display: table;
+}
+
+.parlamentar-list:after {
+	clear: both;
+}
+
  .post-type-archive-parlamentar .parlamentar {
- 	background-color: #eee;
+ 	float: left;
+ 	padding: 0.25em;
+ 	text-align: center;
+ 	width: 50%;
+ }
+
+ .post-type-archive-parlamentar .parlamentar .entry-header {
+ 	margin: 0;
  }
 
  .post-type-archive-parlamentar .parlamentar .entry-title {
- 	font-size: 1.5em;
+ 	font-size: 1.5rem;
+ }
+
+ @media screen and (min-width: 34em) {
+ 	.post-type-archive-parlamentar .parlamentar {
+ 		width: 33.333%;
+ 	}
+ }
+
+ @media only screen and (min-width: 52.38em) { 
+ 	.post-type-archive-parlamentar .parlamentar {
+ 		width: 25%;
+ 	}
  }
