@@ -139,9 +139,6 @@ get_header(); ?>
 			    }
 				?>
 
-				<footer class="entry-footer">
-					<?php publico_entry_footer(); ?>
-				</footer><!-- .entry-footer -->
 			</article><!-- #post-## -->
 
 		<?php endwhile; // End of the loop. ?>
