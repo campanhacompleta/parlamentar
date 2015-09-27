@@ -30,23 +30,107 @@ get_header(); ?>
 				</header><!-- .entry-header -->
 
 				<?php 
-				$post_metas = get_post_meta( $post->ID, '', true );
 
-				echo '<ul>';
-				foreach( $post_metas as $key => $value ) {
+				do_action( 'the_parlamentar_meta' );
 
-					if ( strpos( $key, '_parlamentar') === false ) {
-						continue;
+
+					
+
+					$parlamentar_full_name = get_post_meta( $post->ID, '_parlamentar-info-full-name', true );
+
+					echo '<h2>' . $parlamentar_full_name . '</h2>';
+
+					// Top info
+					$metas_array = array(
+						'_parlamentar-info-birthday',
+						'_parlamentar-info-marital-status',
+						'_parlamentar-info-birthplace',
+						'_parlamentar-info-education',
+						'_parlamentar-info-occupation'
+					);
+
+					echo '<ul>';
+					foreach( $metas_array as $meta ) {
+						$meta_value = get_post_meta( $post->ID, $meta, true );
+					    if ( ! empty ( $meta_value ) ) {
+					    	echo '<li>' . $meta_value . '</li>';
+					    }
 					}
+					echo '</ul>';
 
-				    echo '<li>' . $value[0] . '</li>';
-				}
-				echo '</ul>';
+					// Contact info
+					$metas_array = array(
+						'_parlamentar-info-address',
+						'_parlamentar-info-telephone',
+						'_parlamentar-info-email',
+					);
+
+					echo '<ul>';
+					foreach( $metas_array as $meta ) {
+						$meta_value = get_post_meta( $post->ID, $meta, true );
+
+						if ( ! empty ( $meta_value ) ) {
+					    	echo '<li>' . $meta_value . '</li>';
+					    }
+					}
+					echo '</ul>';
+
+					// Social info
+					$metas_array = array(
+						'_parlamentar-info-website',
+						'_parlamentar-info-facebook',
+						'_parlamentar-info-twitter',
+						'_parlamentar-info-wikipedia',
+					);
+
+					echo '<ul>';
+					foreach( $metas_array as $meta ) {
+						$meta_value = get_post_meta( $post->ID, $meta, true );
+
+						if ( ! empty ( $meta_value ) ) {
+					    	echo '<li>' . $meta_value . '</li>';
+					    }
+					}
+					echo '</ul>';
+					
+
+					/*
+					$post_metas = get_post_meta( $post->ID, '', true );
+					echo '<hr><ul>';
+					foreach( $post_metas as $key => $value ) {
+
+						if ( strpos( $key, '_parlamentar') === false ) {
+							continue;
+						}
+
+					    echo '<li>' . $value[0] . '</li>';
+					}
+					echo '</ul>';
+					*/
 				?>
 
 				<div class="entry-content">
 					<?php the_content(); ?>
 				</div><!-- .entry-content -->
+
+				<?php
+				// Transparency info
+				$metas_array = array(
+					'_parlamentar-info-accountability',
+					'_parlamentar-info-political-accountability',
+				);
+
+				echo '<h3>Transparência</h3>';
+				echo '<ul>';
+				foreach( $metas_array as $meta ) {
+					$meta_value = get_post_meta( $post->ID, $meta, true );
+
+					if ( ! empty ( $meta_value ) ) {
+				    	echo '<li><a href="' . esc_url( $meta_value ) . '"">' . $meta_value . '</a></li>';
+				    }
+				}
+				echo '</ul>';
+				?>
 
 				<footer class="entry-footer">
 					<?php publico_entry_footer(); ?>
