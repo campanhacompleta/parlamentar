@@ -107,7 +107,7 @@ class Parlamentar_Public {
 	 * @since	1.0.0
 	 * @uses locate_template()
 	 */
-	function template_include( $template ){
+	function include_single_template( $template ) {
 
 	    if ( is_singular( 'parlamentar' ) && locate_template( array( 'single-parlamentar.php' ) ) == '' ) {
 	        $template = dirname( __FILE__ ) . '/templates/single-parlamentar.php';

@@ -177,7 +177,7 @@ class Parlamentar {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_filter( 'template_include', $plugin_public, 'template_include' );
+		$this->loader->add_filter( 'template_include', $plugin_public, 'include_single_template' );
 
 	}
 
