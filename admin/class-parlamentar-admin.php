@@ -108,6 +108,12 @@ class Parlamentar_Admin {
 				'type' => 'url',
 			),
 
+			'Equipe do mandato' => array (
+				'slug' => 'term-cabinet',
+				'title' => __( 'Equipe do mandato', 'parlamentar' ),
+				'type' => 'wp_editor',
+			),
+
 			'Endereço' => array (
 				'slug' => 'address',
 				'title' => __( 'Endereço', 'parlamentar' ),
@@ -339,6 +345,9 @@ class Parlamentar_Admin {
 			}
 			elseif ( $field['type'] == 'url') {
 				$new = esc_url_raw( $_POST[$slug] );
+			}
+			elseif ( $field['type'] == 'wp_editor') {
+				$new = $_POST[$slug];
 			}
 			else {
 				$new = sanitize_text_field( $_POST[$slug] );

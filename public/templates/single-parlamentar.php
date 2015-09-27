@@ -130,6 +130,13 @@ get_header(); ?>
 				    }
 				}
 				echo '</ul>';
+
+				$meta_value = get_post_meta( $post->ID, '_parlamentar-info-term-cabinet', true );
+
+				if ( ! empty ( $meta_value ) ) {
+					echo '<h3>Equipe do mandato</h3>';
+			    	echo wpautop( $meta_value );
+			    }
 				?>
 
 				<footer class="entry-footer">

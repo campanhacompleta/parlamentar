@@ -25,7 +25,21 @@ foreach ( $this->meta_fields as $key => $info ) : ?>
 	?>
 	<p>
 		<label for="<?php echo $slug; ?>"><?php echo $info['title']; ?></label>
-		<input class="widefat" type="text" name="<?php echo $slug; ?>" id="<?php echo $slug; ?>" value="<?php echo esc_attr( $value ); ?>" />
+		<?php if ( $info['type'] == 'wp_editor' ) : ?>
+			<?php
+				wp_editor(
+					$value,
+					$slug,
+					array(
+						'media_buttons' => false,
+						'quicktags'		=> false,
+						'teeny'			=> true
+					)
+				);
+			?>
+		<?php else : ?>
+			<input class="widefat" type="text" name="<?php echo $slug; ?>" id="<?php echo $slug; ?>" value="<?php echo esc_attr( $value ); ?>" />
+		<?php endif; ?>
 	</p>
 
 <?php endforeach; ?>
