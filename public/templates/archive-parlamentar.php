@@ -32,7 +32,7 @@ get_header(); ?>
 					<header class="entry-header">
 						<?php if ( has_post_thumbnail() ) : ?>
 						<div class="entry-image">
-							<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_post_thumbnail( 'thumbnail' ); ?></a>
+							<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_post_thumbnail( 'parlamentar-archive' ); ?></a>
 						</div><!-- .entry-image -->
 						<?php endif; ?>
 

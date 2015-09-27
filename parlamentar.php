@@ -37,6 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
 function activate_parlamentar() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar-activator.php';
 	Parlamentar_Activator::activate();
+	flush_rewrite_rules();
 }
 
 /**
