@@ -25,7 +25,7 @@ get_header(); ?>
 				?>
 			</header><!-- .page-header -->
 
-			<div class="parlamentar-list">
+			<div class="entry-content parlamentar-list">
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
