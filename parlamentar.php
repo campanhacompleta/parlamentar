@@ -30,25 +30,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-parlamentar-activator.php
- */
-function activate_parlamentar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar-activator.php';
-	Parlamentar_Activator::activate();
-	flush_rewrite_rules();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-parlamentar-deactivator.php
- */
-function deactivate_parlamentar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar-deactivator.php';
-	Parlamentar_Deactivator::deactivate();
-}
-
 register_activation_hook( __FILE__, 'activate_parlamentar' );
 register_deactivation_hook( __FILE__, 'deactivate_parlamentar' );
 
@@ -87,7 +68,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar.php';
 function run_parlamentar() {
 
 	$plugin = new Parlamentar();
-	$plugin->run();
 
 }
 run_parlamentar();
