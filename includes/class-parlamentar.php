@@ -457,10 +457,28 @@ class Parlamentar {
 
 	}
 
-	public function get_parlamentar_meta() {
+	public function get_parlamentar_meta( $field_id ) {
 
 		global $post;
-		$output .= '<ul>';
+		$output = '';
+
+		if ( ! empty( $field_id ) ) {
+
+			if ( array_key_exists( $field_id, $this->fields ) ) {
+
+				$meta_field = $this->fields[$field_id];
+
+				$meta_key = $this->fields_prefix . $meta_field['slug'];
+				$meta_type = $meta_field['type'];
+				$meta_title = $meta_field['title'];
+				$meta_value = get_post_meta( $post->ID, $meta_key, true );
+
+				if ( ! empty ( $meta_value ) ) {
+
+					switch ( $meta_type ) {
+						case 'url' :
+							$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
+							break;
 
 						case 'wp_editor' :
 							$output .= wpautop( $meta_value );
@@ -476,38 +494,6 @@ class Parlamentar {
 			}
 
 		}
-		/*
-		$output .= '<ul>';
-		foreach( $this->fields as $key => $value ) {
-
-			$meta_key = $this->fields_prefix . $value['slug'];
-			$meta_title = $value['title'];
-			$meta_type = $value['type'];
-
-			$meta_value = get_post_meta( $post->ID, $meta_key, true );
-
-			if ( ! empty ( $meta_value ) ) {
-				$output .= '<li>';
-
-				switch ( $meta_type ) {
-					case 'url' :
-						$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
-						break;
-
-					case 'wp_editor' :
-						$output .= wpautop( $meta_value );
-						break;
-
-					default :
-						$output .= $meta_title . ': ' . $meta_value;
-						break;
-				}
-
-				$output .= '</li>';
-		    }
-		}
-		$output .= '</ul>';
-		*/
 
 		return $output;
 	}
@@ -517,14 +503,9 @@ class Parlamentar {
 		global $post;
 		$new_content = '';
 
-		// Full name
-		$parlamentar_full_name = $this->get_parlamentar_meta( 'full-name' );
-		if ( ! empty ( $parlamentar_full_name ) ) {
-			$new_content .= '<h2>' . $parlamentar_full_name . '</h2>';
-		}
-
 		// Top info
 		$metas_array = array(
+			'full-name',
 			'birthday',
 			'marital-status',
 			'birthplace',
@@ -545,64 +526,65 @@ class Parlamentar {
 
 		// Contact info
 		$metas_array = array(
-			'_parlamentar-info-address',
-			'_parlamentar-info-telephone',
-			'_parlamentar-info-email',
+			'address',
+			'telephone',
+			'email',
 		);
 
-		$new_content .= '<ul>';
-		foreach( $metas_array as $meta ) {
-			$meta_value = get_post_meta( $post->ID, $meta, true );
+		$new_content .= '<address>';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
-			if ( ! empty ( $meta_value ) ) {
-		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= $meta_value . '<br>';
 		    }
+
 		}
-		$new_content .= '</ul>';
+		$new_content .= '</address>';
 
 		// Social info
 		$metas_array = array(
-			'_parlamentar-info-website',
-			'_parlamentar-info-facebook',
-			'_parlamentar-info-twitter',
-			'_parlamentar-info-wikipedia',
+			'website',
+			'facebook',
+			'twitter',
+			'wikipedia',
 		);
 
-		$new_content .= '<ul>';
-		foreach( $metas_array as $meta ) {
-			$meta_value = get_post_meta( $post->ID, $meta, true );
+		$new_content .= '<ul class="parlamentar__social-links">';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
-			if ( ! empty ( $meta_value ) ) {
+		    if ( ! empty ( $meta_value ) ) {
 		    	$new_content .= '<li>' . $meta_value . '</li>';
 		    }
+
 		}
 		$new_content .= '</ul>';
 
+		// Regular content
 		$new_content .= $content;
 
 		// Transparency info
 		$metas_array = array(
-			'_parlamentar-info-accountability',
-			'_parlamentar-info-political-accountability',
+			'accountability',
+			'political-accountability',
+			'term-cabinet'
 		);
 
 		$new_content .= '<h3>Transparência</h3>';
 		$new_content .= '<ul>';
-		foreach( $metas_array as $meta ) {
-			$meta_value = get_post_meta( $post->ID, $meta, true );
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
-			if ( ! empty ( $meta_value ) ) {
-		    	$new_content .= '<li><a href="' . esc_url( $meta_value ) . '"">' . $meta_value . '</a></li>';
+		    if ( ! empty ( $meta_value ) ) {
+		    	if ( 'term-cabinet' == $meta_key ) {
+		    		$meta_value = '<h3>Equipe do mandato</h3>' . $meta_value;
+		    	}
+		    	$new_content .= '<li>'. $meta_value . '</li>';
 		    }
+
 		}
 		$new_content .= '</ul>';
-
-		$meta_value = get_post_meta( $post->ID, '_parlamentar-info-term-cabinet', true );
-
-		if ( ! empty ( $meta_value ) ) {
-			$new_content .= '<h3>Equipe do mandato</h3>';
-	    	$new_content .= wpautop( $meta_value );
-	    }
 
 		return $new_content;
 
