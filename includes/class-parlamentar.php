@@ -495,7 +495,7 @@ class Parlamentar {
 							break;
 
 						case 'email' :
-							$output .= '<a href="mailto:' . antispambot( $meta_value ) . '">' . antispambot( $meta_value ) . '</a>';
+							$output .= $meta_title . ': <a href="mailto:' . antispambot( $meta_value ) . '">' . antispambot( $meta_value ) . '</a>';
 							break;
 
 						case 'wp_editor' :
@@ -579,7 +579,7 @@ class Parlamentar {
 		}
 		$new_content .= '</ul>';
 
-		$new_content .= '<h2><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
+		$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
 		// Regular content
 		$new_content .= $content;
 
@@ -589,7 +589,7 @@ class Parlamentar {
 			'political-accountability',
 		);
 
-		$new_content .= '<h2><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
+		$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
 		$new_content .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
@@ -605,7 +605,7 @@ class Parlamentar {
 		$new_content .= '</ul>';
 
 		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
-			$new_content .= '<h2><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
+			$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
 		}
 
 		return $new_content;
