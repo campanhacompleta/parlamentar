@@ -513,7 +513,7 @@ class Parlamentar {
 			'occupation'
 		);
 
-		$new_content .= '<ul>';
+		$new_content .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
@@ -550,7 +550,7 @@ class Parlamentar {
 			'wikipedia',
 		);
 
-		$new_content .= '<ul class="parlamentar__social-links">';
+		$new_content .= '<ul class="parlamentar__meta-list parlamentar__meta-list--inline parlamentar__social-links">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
@@ -571,8 +571,8 @@ class Parlamentar {
 			'term-cabinet'
 		);
 
-		$new_content .= '<h3>Transparência</h3>';
-		$new_content .= '<ul>';
+		$new_content .= '<h2>Transparência</h2>';
+		$new_content .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 

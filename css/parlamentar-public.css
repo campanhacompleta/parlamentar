@@ -29,6 +29,18 @@
  	font-size: 1.5rem;
  }
 
+ /* Parlamentar single post */
+ .parlamentar__meta-list {
+ 	list-style-type: none;
+ 	margin-left: 0;
+ 	padding: 0;
+ }
+
+ .parlamentar__meta-list--inline li {
+ 	display: inline-block;
+ 	margin-right: 1em;
+ }
+
  @media screen and (min-width: 34em) {
  	.post-type-archive-parlamentar .parlamentar {
  		width: 33.333%;
