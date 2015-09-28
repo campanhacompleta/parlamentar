@@ -587,7 +587,6 @@ class Parlamentar {
 		$metas_array = array(
 			'accountability',
 			'political-accountability',
-			'term-cabinet'
 		);
 
 		$new_content .= '<h2><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
@@ -604,6 +603,10 @@ class Parlamentar {
 
 		}
 		$new_content .= '</ul>';
+
+		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
+			$new_content .= '<h2><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
+		}
 
 		return $new_content;
 
