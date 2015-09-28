@@ -184,8 +184,10 @@ class Parlamentar {
 		/* Public hooks */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
-		add_filter( 'template_include', array( $this, 'include_single_template' ) );
+		//add_filter( 'template_include', array( $this, 'include_single_template' ) );
 		add_filter( 'archive_template', array( $this, 'include_archive_template' ) );
+
+		add_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
 
 	}
 
@@ -452,6 +454,137 @@ class Parlamentar {
 	    }
 
 	    return $template;
+
+	}
+
+	public function get_parlamentar_meta() {
+
+		global $post;
+		$output .= '<ul>';
+
+		foreach( $this->fields as $key => $value ) {
+			print_r($value);
+
+			$meta_key = $this->fields_prefix . $value['slug'];
+			$meta_title = $value['title'];
+			$meta_type = $value['type'];
+
+			$meta_value = get_post_meta( $post->ID, $meta_key, true );
+
+			if ( ! empty ( $meta_value ) ) {
+				$output .= '<li>';
+
+				switch ( $meta_type ) {
+					case 'url' :
+						$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
+						break;
+
+					case 'wp_editor' :
+						$output .= wpautop( $meta_value );
+						break;
+
+					default :
+						$output .= $meta_title . ': ' . $meta_value;
+						break;
+				}
+
+				$output .= '</li>';
+		    }
+		}
+		$output .= '</ul>';
+
+		return $output;
+	}
+
+	public function add_parlamentar_info_to_content( $content ) {
+
+		global $post;
+		$new_content = '';
+
+		$parlamentar_full_name = get_post_meta( $post->ID, '_parlamentar-info-full-name', true );
+
+		$new_content .= '<h2>' . $parlamentar_full_name . '</h2>';
+
+		// Top info
+		$metas_array = array(
+			'_parlamentar-info-birthday',
+			'_parlamentar-info-marital-status',
+			'_parlamentar-info-birthplace',
+			'_parlamentar-info-education',
+			'_parlamentar-info-occupation'
+		);
+
+		$new_content .= '<ul>';
+		foreach( $metas_array as $meta ) {
+			$meta_value = get_post_meta( $post->ID, $meta, true );
+		    if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    }
+		}
+		$new_content .= '</ul>';
+
+		// Contact info
+		$metas_array = array(
+			'_parlamentar-info-address',
+			'_parlamentar-info-telephone',
+			'_parlamentar-info-email',
+		);
+
+		$new_content .= '<ul>';
+		foreach( $metas_array as $meta ) {
+			$meta_value = get_post_meta( $post->ID, $meta, true );
+
+			if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    }
+		}
+		$new_content .= '</ul>';
+
+		// Social info
+		$metas_array = array(
+			'_parlamentar-info-website',
+			'_parlamentar-info-facebook',
+			'_parlamentar-info-twitter',
+			'_parlamentar-info-wikipedia',
+		);
+
+		$new_content .= '<ul>';
+		foreach( $metas_array as $meta ) {
+			$meta_value = get_post_meta( $post->ID, $meta, true );
+
+			if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    }
+		}
+		$new_content .= '</ul>';
+
+		$new_content .= $content;
+
+		// Transparency info
+		$metas_array = array(
+			'_parlamentar-info-accountability',
+			'_parlamentar-info-political-accountability',
+		);
+
+		$new_content .= '<h3>Transparência</h3>';
+		$new_content .= '<ul>';
+		foreach( $metas_array as $meta ) {
+			$meta_value = get_post_meta( $post->ID, $meta, true );
+
+			if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li><a href="' . esc_url( $meta_value ) . '"">' . $meta_value . '</a></li>';
+		    }
+		}
+		$new_content .= '</ul>';
+
+		$meta_value = get_post_meta( $post->ID, '_parlamentar-info-term-cabinet', true );
+
+		if ( ! empty ( $meta_value ) ) {
+			$new_content .= '<h3>Equipe do mandato</h3>';
+	    	$new_content .= wpautop( $meta_value );
+	    }
+
+		return $new_content;
 
 	}
 
