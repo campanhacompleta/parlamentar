@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://zulian.org
+ * @link       http://campanhacompleta.com.br
  * @since      1.0.0
  *
  * @package    Parlamentar
@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Parlamentar
  * @subpackage Parlamentar/includes
- * @author     Eduardo Zulian <ola@zulian.org>
+ * @author     Campanha Completa <ola@zulian.org>
  */
 class Parlamentar {
 
@@ -197,7 +197,7 @@ class Parlamentar {
 	 * Loads and defines the internationalization files for this plugin
 	 * so that it is ready for translation.
 	 *
-	 * @link       http://zulian.org
+	 * @link       http://campanhacompleta.com.br
 	 * @since      1.0.0
 	 *
 	 * @package    Parlamentar
