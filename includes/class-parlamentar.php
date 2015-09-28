@@ -82,86 +82,86 @@ class Parlamentar {
 
 		$this->fields_prefix = '_parlamentar-info-';
 		$this->fields = array(
-			'Nome completo' => array(
+			'full-name' => array(
 				'slug' => 'full-name',
 				'title' => __( 'Nome completo', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
-			'Data de nascimento' => array(
+			'birthday' => array(
 				'slug' => 'birthday',
 				'title' => __( 'Data de nascimento', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => 'date',
 			),
-			'Naturalidade' => array(
+			'birthplace' => array(
 				'slug' => 'birthplace',
 				'title' => __( 'Naturalidade', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
-			'Estado civil' => array(
+			'marital-status' => array(
 				'slug' => 'marital-status',
 				'title' => __( 'Estado civil', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
-			'Ocupação' => array(
+			'occupationo' => array(
 				'slug' => 'occupation',
 				'title' => __( 'Ocupação', 'parlamentar' ),
 				'type' => '',
 			),
-			'Escolaridade' => array(
+			'education' => array(
 				'slug' => 'education',
 				'title' => __( 'Escolaridade', 'parlamentar' ),
 				'type' => '',
 			),
-			'Link para prestação de contas do mandato' => array(
+			'political-accountability' => array(
 				'slug' => 'political-accountability',
 				'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
 				'type' => 'url',
 			),
-			'Link para prestação de contas ao TRE' => array(
+			'accountability' => array(
 				'slug' => 'accountability',
 				'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
 				'type' => 'url',
 			),
-			'Equipe do mandato' => array(
+			'term-cabinet' => array(
 				'slug' => 'term-cabinet',
 				'title' => __( 'Equipe do mandato', 'parlamentar' ),
 				'type' => 'wp_editor',
 			),
-			'Endereço' => array(
+			'term-cabinet' => array(
 				'slug' => 'address',
 				'title' => __( 'Endereço', 'parlamentar' ),
 				'type' => '',
 			),
-			'Telephone' => array(
+			'telephone' => array(
 				'slug' => 'telephone',
-				'title' => __( 'Telephone', 'parlamentar' ),
+				'title' => __( 'Telefone', 'parlamentar' ),
 				'type' => '',
 			),
-			'Email' => array(
+			'email' => array(
 				'slug' => 'email',
 				'title' => __( 'Email', 'parlamentar' ),
 				'type' => 'email',
 			),
-			'Facebook' => array(
+			'facebook' => array(
 				'slug' => 'facebook',
 				'title' => __( 'Facebook', 'parlamentar' ),
 				'type' => 'url',
 			),
-			'Twitter' => array(
+			'twitter' => array(
 				'slug' => 'twitter',
 				'title' => __( 'Twitter', 'parlamentar' ),
 				'type' => 'url',
 			),
-			'Wikipedia' => array(
+			'wikipedia' => array(
 				'slug' => 'wikipedia',
 				'title' => __( 'Wikipedia', 'parlamentar' ),
 				'type' => 'url',
 			),
-			'Website' => array(
+			'website' => array(
 				'slug' => 'website',
 				'title' => __( 'Website', 'parlamentar' ),
 				'type' => 'url',
