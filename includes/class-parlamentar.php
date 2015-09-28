@@ -422,6 +422,7 @@ class Parlamentar {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'css/parlamentar-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '4.4.0' );
 
 	}
 
@@ -477,7 +478,24 @@ class Parlamentar {
 
 					switch ( $meta_type ) {
 						case 'url' :
+							if ( 'website' == $field_id ) {
+								$meta_title = '<i class="fa fa-link"></i>&nbsp;' . $meta_title;
+							}
+							elseif ( 'twitter' == $field_id ) {
+								$meta_title = '<i class="fa fa-twitter"></i>&nbsp;' . $meta_title;
+							}
+							elseif ( 'facebook' == $field_id ) {
+								$meta_title = '<i class="fa fa-facebook"></i>&nbsp;' . $meta_title;
+							}
+							elseif ( 'wikipedia' == $field_id ) {
+								$meta_title = '<i class="fa fa-wikipedia-w"></i>&nbsp;' . $meta_title;
+							}
+
 							$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
+							break;
+
+						case 'email' :
+							$output .= '<a href="mailto:' . antispambot( $meta_value ) . '">' . antispambot( $meta_value ) . '</a>';
 							break;
 
 						case 'wp_editor' :
@@ -561,6 +579,7 @@ class Parlamentar {
 		}
 		$new_content .= '</ul>';
 
+		$new_content .= '<h2><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
 		// Regular content
 		$new_content .= $content;
 
@@ -571,14 +590,14 @@ class Parlamentar {
 			'term-cabinet'
 		);
 
-		$new_content .= '<h2>Transparência</h2>';
+		$new_content .= '<h2><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
 		$new_content .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
 		    if ( ! empty ( $meta_value ) ) {
 		    	if ( 'term-cabinet' == $meta_key ) {
-		    		$meta_value = '<h3>Equipe do mandato</h3>' . $meta_value;
+		    		$meta_value = '<h3><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h3>' . $meta_value;
 		    	}
 		    	$new_content .= '<li>'. $meta_value . '</li>';
 		    }
