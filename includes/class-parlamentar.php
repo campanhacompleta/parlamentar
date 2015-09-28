@@ -131,7 +131,7 @@ class Parlamentar {
 				'title' => __( 'Equipe do mandato', 'parlamentar' ),
 				'type' => 'wp_editor',
 			),
-			'term-cabinet' => array(
+			'address' => array(
 				'slug' => 'address',
 				'title' => __( 'Endereço', 'parlamentar' ),
 				'type' => '',
@@ -462,8 +462,23 @@ class Parlamentar {
 		global $post;
 		$output .= '<ul>';
 
+						case 'wp_editor' :
+							$output .= wpautop( $meta_value );
+							break;
+
+						default :
+							$output .= $meta_title . ': ' . $meta_value;
+							break;
+					}
+
+				}
+
+			}
+
+		}
+		/*
+		$output .= '<ul>';
 		foreach( $this->fields as $key => $value ) {
-			print_r($value);
 
 			$meta_key = $this->fields_prefix . $value['slug'];
 			$meta_title = $value['title'];
@@ -492,6 +507,7 @@ class Parlamentar {
 		    }
 		}
 		$output .= '</ul>';
+		*/
 
 		return $output;
 	}
@@ -501,25 +517,29 @@ class Parlamentar {
 		global $post;
 		$new_content = '';
 
-		$parlamentar_full_name = get_post_meta( $post->ID, '_parlamentar-info-full-name', true );
-
-		$new_content .= '<h2>' . $parlamentar_full_name . '</h2>';
+		// Full name
+		$parlamentar_full_name = $this->get_parlamentar_meta( 'full-name' );
+		if ( ! empty ( $parlamentar_full_name ) ) {
+			$new_content .= '<h2>' . $parlamentar_full_name . '</h2>';
+		}
 
 		// Top info
 		$metas_array = array(
-			'_parlamentar-info-birthday',
-			'_parlamentar-info-marital-status',
-			'_parlamentar-info-birthplace',
-			'_parlamentar-info-education',
-			'_parlamentar-info-occupation'
+			'birthday',
+			'marital-status',
+			'birthplace',
+			'education',
+			'occupation'
 		);
 
 		$new_content .= '<ul>';
-		foreach( $metas_array as $meta ) {
-			$meta_value = get_post_meta( $post->ID, $meta, true );
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
+
 		    if ( ! empty ( $meta_value ) ) {
 		    	$new_content .= '<li>' . $meta_value . '</li>';
 		    }
+
 		}
 		$new_content .= '</ul>';
 
