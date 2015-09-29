@@ -648,19 +648,27 @@ class Parlamentar {
 
 		if ( $parlamentar_list->have_posts() ) :
 
+			$output .= '<div class="parlamentar__list">';
+
 			while ( $parlamentar_list->have_posts() ) : $parlamentar_list->the_post();
+
+				$output .= '<div class="parlamentar__info">';
 
 				if ( has_post_thumbnail() ) {
 					$output .= '<div class="entry-image post-thumbnail parlamentar__thumbbnail">';
-					$output .= '<a href="' . get_permalink() . '" rel="bookmark">' . get_the_post_thumbnail( get_the_ID(), 'parlamentar-archive' ) . '</a>';
+					$output .= '<a href="' . get_permalink() . '" rel="bookmark" class="parlamentar__permalink">' . get_the_post_thumbnail( get_the_ID(), 'parlamentar-archive' ) . '</a>';
 					$output .= '</div>';
 				}
 
-				$output .= '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+				$output .= '<h2 class="entry-title parlamentar__title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
 				$output .= get_the_title();
 				$output .= '</a></h2>';
 
+				$output .= '</div>';
+
 			endwhile;
+
+			$output .= '</div>';
 
 		endif;
 
