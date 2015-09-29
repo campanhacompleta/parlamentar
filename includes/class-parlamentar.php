@@ -172,7 +172,6 @@ class Parlamentar {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) ) ;
 
 		/* Admin hooks */
-
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
@@ -188,6 +187,8 @@ class Parlamentar {
 		add_filter( 'archive_template', array( $this, 'include_archive_template' ) );
 
 		add_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
+
+		add_shortcode( 'parlamentar', array( $this, 'add_parlamentar_shortcode' ) );
 
 	}
 
@@ -609,6 +610,61 @@ class Parlamentar {
 		}
 
 		return $new_content;
+
+	}
+
+	/**
+	 * Create a shortcode to list posts and create an archive of parlamentarians
+	 * 
+	 * @since	1.0.0
+	 * @param 	string  $atts  The shortcode attributes
+	 */
+	public function add_parlamentar_shortcode( $atts ) {
+
+		global $post;
+
+		$atts = shortcode_atts( array(
+			'type' => '',
+		), $atts, 'parlamentar' );
+
+		$output = '';
+
+		$args = array(
+			'post_type' => 'parlamentar',
+			'posts_per_page' => '-1',
+		);
+
+		if ( ! empty ( $atts['type'] ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'parlamentar_type',
+					'field'    => 'slug',
+					'terms'    => $atts['type'],
+				)
+			);
+		}
+
+		$parlamentar_list = new WP_Query( $args );
+
+		if ( $parlamentar_list->have_posts() ) :
+
+			while ( $parlamentar_list->have_posts() ) : $parlamentar_list->the_post();
+
+				if ( has_post_thumbnail() ) {
+					$output .= '<div class="entry-image post-thumbnail parlamentar__thumbbnail">';
+					$output .= '<a href="' . get_permalink() . '" rel="bookmark">' . get_the_post_thumbnail( get_the_ID(), 'parlamentar-archive' ) . '</a>';
+					$output .= '</div>';
+				}
+
+				$output .= '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+				$output .= get_the_title();
+				$output .= '</a></h2>';
+
+			endwhile;
+
+		endif;
+
+		return $output;
 
 	}
 
