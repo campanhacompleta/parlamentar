@@ -517,9 +517,19 @@ class Parlamentar {
 		return $output;
 	}
 
+	/**
+	 * Add Parlamentar info to `the_content` filter
+	 * 
+	 * @since 1.0.0
+	 */
 	public function add_parlamentar_info_to_content( $content ) {
 
 		global $post;
+
+		if ( 'parlamentar' != get_post_type() ) {
+			return $content;
+		}
+
 		$new_content = '';
 
 		// Top info
