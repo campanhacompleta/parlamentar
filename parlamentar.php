@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://zulian.org
+ * @link              http://campanhacompleta.com.br
  * @since             1.0.0
  * @package           Parlamentar
  *
@@ -17,8 +17,8 @@
  * Plugin URI:        http://github.com/campanhacompleta/parlamentar
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            Eduardo Zulian
- * Author URI:        http://zulian.org
+ * Author:            Campanha Completa
+ * Author URI:        http://campanhacompleta.com.br
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       parlamentar
@@ -28,25 +28,6 @@
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
-}
-
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-parlamentar-activator.php
- */
-function activate_parlamentar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar-activator.php';
-	Parlamentar_Activator::activate();
-	flush_rewrite_rules();
-}
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-parlamentar-deactivator.php
- */
-function deactivate_parlamentar() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar-deactivator.php';
-	Parlamentar_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_parlamentar' );
@@ -87,7 +68,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-parlamentar.php';
 function run_parlamentar() {
 
 	$plugin = new Parlamentar();
-	$plugin->run();
 
 }
 run_parlamentar();

@@ -1,0 +1,58 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+
+.parlamentar-list:before,
+.parlamentar-list:after {
+	content: "";
+	display: table;
+}
+
+.parlamentar-list:after {
+	clear: both;
+}
+
+ .post-type-archive-parlamentar .parlamentar {
+ 	float: left;
+ 	padding: 0.25em;
+ 	text-align: center;
+ 	width: 50%;
+ }
+
+ .post-type-archive-parlamentar .parlamentar .entry-header {
+ 	margin: 0;
+ }
+
+ .post-type-archive-parlamentar .parlamentar .entry-title {
+ 	font-size: 1.5rem;
+ }
+
+ /* Parlamentar single post */
+ .parlamentar__area-title {
+ 	font-size: 1.5em;
+ }
+
+ .parlamentar__meta-list {
+ 	list-style-type: none;
+ 	margin-left: 0;
+ 	padding: 0;
+ }
+
+ .parlamentar__meta-list--inline li {
+ 	display: inline-block;
+ 	margin-right: 1em;
+ }
+
+ @media screen and (min-width: 34em) {
+ 	.post-type-archive-parlamentar .parlamentar {
+ 		width: 33.333%;
+ 	}
+ }
+
+ @media only screen and (min-width: 52.38em) { 
+ 	.post-type-archive-parlamentar .parlamentar {
+ 		width: 25%;
+ 	}
+ }
