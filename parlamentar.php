@@ -57,7 +57,7 @@ function check_parlamentar_rewrite() {
 	$found = false;
 	foreach ($rules as $rule)
 	{
-		if(strpos($rule, 'palamentar') !== false)
+		if(strpos($rule, 'parlamentar') !== false)
 		{
 			$found = true;
 			break;
