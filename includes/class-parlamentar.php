@@ -581,9 +581,11 @@ class Parlamentar {
 		}
 		$new_content .= '</ul>';
 
-		$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
 		// Regular content
-		$new_content .= $content;
+		if ( ! empty ( $content ) ) {
+			$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
+			$new_content .= $content;
+		}
 
 		// Transparency info
 		$metas_array = array(
