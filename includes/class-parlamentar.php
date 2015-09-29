@@ -231,21 +231,16 @@ class Parlamentar {
 			'show_ui' => true, // public
 			'show_in_menu' => true,
 			'menu_position' => 5,
-			// 'menu_icon' => '',
+			'menu_icon' => 'dashicons-businessman',
 			'capability_type' => 'post',
 			'map_meta_cap' => true,
 			'hierarchical' => false,
-			'supports' => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions' ),
-			//'register_meta_box_cb' => array($this, 'fluxo_emrede_custom_meta' ),
-			//'taxonomies' => array('post_tag','category' ),
+			'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
 			'permalink_epmask' => 'EP_PERMALINK ',
 			'has_archive' => true,
 			'rewrite' => true,
 			'query_var' => true,
 			'can_export' => true
-			//'show_in_nav_menus' => '', // public
-			//'_builtin' => '', // Core
-			//'_edit_link' => '' // Core
 		);
 	
 		register_post_type( 'parlamentar', $args );
