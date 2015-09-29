@@ -187,6 +187,7 @@ class Parlamentar {
 		add_filter( 'archive_template', array( $this, 'include_archive_template' ) );
 
 		add_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
+		add_filter( 'the_title', array( $this, 'add_parlamentar_info_to_title' ) );
 
 		add_shortcode( 'parlamentar', array( $this, 'add_parlamentar_shortcode' ) );
 
@@ -610,6 +611,43 @@ class Parlamentar {
 		}
 
 		return $new_content;
+
+	}
+
+	/**
+	 * Add Parlamentar taxonomy info to `the_title` filter
+	 * 
+	 * @since 1.0.0
+	 */
+	public function add_parlamentar_info_to_title( $title ) {
+
+		global $post;
+
+		if ( ! ( is_singular( 'parlamentar' ) && in_the_loop() ) ) {
+			return $title;
+		}
+
+		$new_title = $title;
+
+		$terms = get_the_terms( $post->ID, 'parlamentar_type' );
+
+		if ( $terms && ! is_wp_error( $terms ) ) {
+
+			$parlamentar_type_output = '';
+			$parlamentar_term = array();
+
+			foreach ( $terms as $term ) {
+				$parlamentar_term[] = $term->name;
+			}
+
+			$parlamentar_type_output = join( ', ', $parlamentar_term );
+
+			$new_title .= '<span class="parlamentar__type">';
+			$new_title .= $parlamentar_type_output;
+			$new_title .= '</span>';
+		}
+
+		return $new_title;
 
 	}
 
