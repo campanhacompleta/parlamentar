@@ -350,11 +350,6 @@ class Parlamentar {
 	 */
 	public function save_post( $post_id ) {
 
-		/*
-		 * We need to verify this came from the our screen and with proper authorization,
-		 * because save_post can be triggered at other times.
-		 */
-		$nonce = $_POST['parlamentar_nonce'];
 		
 		// Check if our nonce is set.
 		if ( ! isset( $_POST['parlamentar_nonce'] ) ) {
@@ -362,7 +357,7 @@ class Parlamentar {
 		}
 		
 		// Verify that the nonce is valid
-		if ( ! wp_verify_nonce( $nonce, $this->plugin_name ) ) {
+		if ( ! wp_verify_nonce( $_POST['parlamentar_nonce'], $this->plugin_name ) ) {
 			return $post_id;
 		}
 		
