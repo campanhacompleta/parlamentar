@@ -657,7 +657,8 @@ class Parlamentar {
 	 * @since 1.0.0
 	 */
 	public function parlamentar_get_the_top_info() {
-		$new_content = '';
+
+		$new_content = '<div class="parlamentar__main_info">';
 
 		// Top info
 		$metas_array = array(
@@ -669,7 +670,7 @@ class Parlamentar {
 			'occupation'
 		);
 
-		$new_content .= '<ul class="parlamentar__meta-list">';
+		$new_content .= '<ul class="parlamentar__meta-list parlamentar__personal_info">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
@@ -687,7 +688,9 @@ class Parlamentar {
 			'email',
 		);
 
+		$new_content .= '<div class="parlamentar__contact">';
 		$new_content .= '<address>';
+
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
@@ -697,6 +700,7 @@ class Parlamentar {
 
 		}
 		$new_content .= '</address>';
+		$new_content .= '</div>';
 
 		// Social info
 		$metas_array = array(
@@ -717,6 +721,7 @@ class Parlamentar {
 		}
 		$new_content .= '</ul>';
 
+		$new_content .= '</div>';
 		return $new_content;
 	}
 
@@ -737,7 +742,7 @@ class Parlamentar {
 	public function parlamentar_get_the_transparency_info() {
 		global $post;
 
-		$output = '';
+		$output = '<div class="parlamentar__transparency">';
 
 		// Transparency info
 		$metas_array = array(
@@ -763,6 +768,8 @@ class Parlamentar {
 		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
 			$output .= '<h2 class="parlamentar__area-title"><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
 		}
+
+		$output .= '</div>';
 
 		return $output;
 	}
