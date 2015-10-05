@@ -474,19 +474,6 @@ class Parlamentar {
 
 					switch ( $meta_type ) {
 						case 'url' :
-							if ( 'website' == $field_id ) {
-								$meta_title = '<i class="fa fa-link"></i>&nbsp;' . $meta_title;
-							}
-							elseif ( 'twitter' == $field_id ) {
-								$meta_title = '<i class="fa fa-twitter"></i>&nbsp;' . $meta_title;
-							}
-							elseif ( 'facebook' == $field_id ) {
-								$meta_title = '<i class="fa fa-facebook"></i>&nbsp;' . $meta_title;
-							}
-							elseif ( 'wikipedia' == $field_id ) {
-								$meta_title = '<i class="fa fa-wikipedia-w"></i>&nbsp;' . $meta_title;
-							}
-
 							$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
 							break;
 
