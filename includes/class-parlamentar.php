@@ -191,6 +191,10 @@ class Parlamentar {
 
 		add_shortcode( 'parlamentar', array( $this, 'add_parlamentar_shortcode' ) );
 
+		add_action( 'parlamentar_the_biography', array( $this, 'parlamentar_the_biography' ) );
+		add_action( 'parlamentar_the_top_info', array( $this, 'parlamentar_the_top_info' ) );
+		add_action( 'parlamentar_the_transparency_info', array( $this, 'parlamentar_the_transparency_info' ) );
+
 	}
 
 	/**
@@ -524,62 +528,7 @@ class Parlamentar {
 		$new_content = '';
 
 		// Top info
-		$metas_array = array(
-			'full-name',
-			'birthday',
-			'marital-status',
-			'birthplace',
-			'education',
-			'occupation'
-		);
-
-		$new_content .= '<ul class="parlamentar__meta-list">';
-		foreach( $metas_array as $meta_key ) {
-			$meta_value = $this->get_parlamentar_meta( $meta_key );
-
-		    if ( ! empty ( $meta_value ) ) {
-		    	$new_content .= '<li>' . $meta_value . '</li>';
-		    }
-
-		}
-		$new_content .= '</ul>';
-
-		// Contact info
-		$metas_array = array(
-			'address',
-			'telephone',
-			'email',
-		);
-
-		$new_content .= '<address>';
-		foreach( $metas_array as $meta_key ) {
-			$meta_value = $this->get_parlamentar_meta( $meta_key );
-
-		    if ( ! empty ( $meta_value ) ) {
-		    	$new_content .= $meta_value . '<br>';
-		    }
-
-		}
-		$new_content .= '</address>';
-
-		// Social info
-		$metas_array = array(
-			'website',
-			'facebook',
-			'twitter',
-			'wikipedia',
-		);
-
-		$new_content .= '<ul class="parlamentar__meta-list parlamentar__meta-list--inline parlamentar__social-links">';
-		foreach( $metas_array as $meta_key ) {
-			$meta_value = $this->get_parlamentar_meta( $meta_key );
-
-		    if ( ! empty ( $meta_value ) ) {
-		    	$new_content .= '<li>' . $meta_value . '</li>';
-		    }
-
-		}
-		$new_content .= '</ul>';
+		$new_content .= $this->parlamentar_get_the_top_info();
 
 		// Regular content
 		if ( ! empty ( $content ) ) {
@@ -588,29 +537,7 @@ class Parlamentar {
 		}
 
 		// Transparency info
-		$metas_array = array(
-			'accountability',
-			'political-accountability',
-		);
-
-		$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
-		$new_content .= '<ul class="parlamentar__meta-list">';
-		foreach( $metas_array as $meta_key ) {
-			$meta_value = $this->get_parlamentar_meta( $meta_key );
-
-		    if ( ! empty ( $meta_value ) ) {
-		    	if ( 'term-cabinet' == $meta_key ) {
-		    		$meta_value = '<h3><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h3>' . $meta_value;
-		    	}
-		    	$new_content .= '<li>'. $meta_value . '</li>';
-		    }
-
-		}
-		$new_content .= '</ul>';
-
-		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
-			$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
-		}
+		$new_content .= $this->parlamentar_get_the_transparency_info();
 
 		return $new_content;
 
@@ -714,6 +641,143 @@ class Parlamentar {
 
 		return $output;
 
+	}
+
+	/**
+	 * Echoes the biography
+	 *
+	 * @uses the_content()
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_the_biography() {
+		remove_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
+		the_content();
+	}
+
+	/**
+	 * Prints Parlamentar information
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_the_top_info() {
+		echo $this->parlamentar_get_the_top_info();
+	}
+
+	/**
+	 * Get Parlamentar main information meta data
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_get_the_top_info() {
+		$new_content = '';
+
+		// Top info
+		$metas_array = array(
+			'full-name',
+			'birthday',
+			'marital-status',
+			'birthplace',
+			'education',
+			'occupation'
+		);
+
+		$new_content .= '<ul class="parlamentar__meta-list">';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
+
+		    if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    }
+
+		}
+		$new_content .= '</ul>';
+
+		// Contact info
+		$metas_array = array(
+			'address',
+			'telephone',
+			'email',
+		);
+
+		$new_content .= '<address>';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
+
+		    if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= $meta_value . '<br>';
+		    }
+
+		}
+		$new_content .= '</address>';
+
+		// Social info
+		$metas_array = array(
+			'website',
+			'facebook',
+			'twitter',
+			'wikipedia',
+		);
+
+		$new_content .= '<ul class="parlamentar__meta-list parlamentar__meta-list--inline parlamentar__social-links">';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
+
+		    if ( ! empty ( $meta_value ) ) {
+		    	$new_content .= '<li>' . $meta_value . '</li>';
+		    }
+
+		}
+		$new_content .= '</ul>';
+
+		return $new_content;
+	}
+
+	/**
+	 * Prints transparency information
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_the_transparency_info() {
+		echo $this->parlamentar_get_the_transparency_info();
+	}
+
+	/**
+	 * Get Parlamentar transparency meta data
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_get_the_transparency_info() {
+		global $post;
+
+		$output = '';
+
+		// Transparency info
+		$metas_array = array(
+			'accountability',
+			'political-accountability',
+		);
+
+		$output .= '<h2 class="parlamentar__area-title"><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
+		$output .= '<ul class="parlamentar__meta-list">';
+		foreach( $metas_array as $meta_key ) {
+			$meta_value = $this->get_parlamentar_meta( $meta_key );
+
+		    if ( ! empty ( $meta_value ) ) {
+		    	if ( 'term-cabinet' == $meta_key ) {
+		    		$meta_value = '<h3><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h3>' . $meta_value;
+		    	}
+		    	$output .= '<li>'. $meta_value . '</li>';
+		    }
+
+		}
+		$output .= '</ul>';
+
+		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
+			$output .= '<h2 class="parlamentar__area-title"><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
+		}
+
+		return $output;
 	}
 
 }
