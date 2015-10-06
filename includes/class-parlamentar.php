@@ -518,10 +518,7 @@ class Parlamentar {
 
 		// Regular content
 		if ( ! empty ( $content ) ) {
-			$new_content .= '<div class="parlamentar__biography">';
-			$new_content .= '<h2 class="parlamentar__area-title">Perfil</h2>';
-			$new_content .= $content;
-			$new_content .= '</div>';
+			$new_content .= $this->parlamentar_get_the_biography();
 		}
 
 		// Transparency info
@@ -632,18 +629,33 @@ class Parlamentar {
 	}
 
 	/**
-	 * Echoes the biography
+	 * Prints the biography
 	 *
 	 * @uses the_content()
 	 *
 	 * @since 1.0.0
 	 */
 	public function parlamentar_the_biography() {
+		echo $this->parlamentar_get_the_biography();
+	}
+
+	/**
+	 * Gets the biography
+	 *
+	 * @since 1.0.0
+	 */
+	public function parlamentar_get_the_biography() {
+		global $post;
+
+		// Remove our filter
 		remove_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
-		echo '<div class="parlamentar__biography">';
-		echo '<h2 class="parlamentar__area-title">Perfil</h2>';
-		the_content();
-		echo '</div>';
+
+		$output = '<div class="parlamentar__biography">';
+		$output .= '<h2 class="parlamentar__area-title">Perfil</h2>';
+		$output .= apply_filters('the_content', $post->post_content);
+		$output .= '</div>';
+
+		return $output;
 	}
 
 	/**
@@ -656,7 +668,7 @@ class Parlamentar {
 	}
 
 	/**
-	 * Get Parlamentar main information meta data
+	 * Gets Parlamentar main information meta data
 	 *
 	 * @since 1.0.0
 	 */
