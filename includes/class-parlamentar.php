@@ -518,8 +518,10 @@ class Parlamentar {
 
 		// Regular content
 		if ( ! empty ( $content ) ) {
+			$new_content .= '<div class="parlamentar__biography">';
 			$new_content .= '<h2 class="parlamentar__area-title">Perfil</h2>';
 			$new_content .= $content;
+			$new_content .= '</div>';
 		}
 
 		// Transparency info
@@ -638,7 +640,10 @@ class Parlamentar {
 	 */
 	public function parlamentar_the_biography() {
 		remove_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
+		echo '<div class="parlamentar__biography">';
+		echo '<h2 class="parlamentar__area-title">Perfil</h2>';
 		the_content();
+		echo '</div>';
 	}
 
 	/**
