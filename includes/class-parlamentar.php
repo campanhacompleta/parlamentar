@@ -755,9 +755,6 @@ class Parlamentar {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
 		    if ( ! empty ( $meta_value ) ) {
-		    	if ( 'term-cabinet' == $meta_key ) {
-		    		$meta_value = '<h3>Equipe do mandato</h3>' . $meta_value;
-		    	}
 		    	$output .= '<li>'. $meta_value . '</li>';
 		    }
 
