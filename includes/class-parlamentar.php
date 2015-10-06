@@ -651,7 +651,7 @@ class Parlamentar {
 		remove_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
 
 		$output = '<div class="parlamentar__biography">';
-		$output .= '<h2 class="parlamentar__area-title">Perfil</h2>';
+		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--biography">Perfil</h2>';
 		$output .= apply_filters('the_content', $post->post_content);
 		$output .= '</div>';
 
@@ -766,7 +766,7 @@ class Parlamentar {
 			'political-accountability',
 		);
 
-		$output .= '<h2 class="parlamentar__area-title">Transparência</h2>';
+		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--transparency">Transparência</h2>';
 		$output .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
@@ -779,7 +779,7 @@ class Parlamentar {
 		$output .= '</ul>';
 
 		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
-			$output .= '<h2 class="parlamentar__area-title">Equipe do mandato</h2>' . $term_cabinet;
+			$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--term-cabinet">Equipe do mandato</h2>' . $term_cabinet;
 		}
 
 		$output .= '</div>';
