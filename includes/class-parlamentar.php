@@ -418,7 +418,6 @@ class Parlamentar {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'css/parlamentar-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name . 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '4.4.0' );
 
 	}
 
@@ -519,7 +518,7 @@ class Parlamentar {
 
 		// Regular content
 		if ( ! empty ( $content ) ) {
-			$new_content .= '<h2 class="parlamentar__area-title"><i class="fa fa-user"></i>&nbsp;Perfil</h2>';
+			$new_content .= '<h2 class="parlamentar__area-title">Perfil</h2>';
 			$new_content .= $content;
 		}
 
@@ -750,14 +749,14 @@ class Parlamentar {
 			'political-accountability',
 		);
 
-		$output .= '<h2 class="parlamentar__area-title"><i class="fa fa-usd"></i>&nbsp;Transparência</h2>';
+		$output .= '<h2 class="parlamentar__area-title">Transparência</h2>';
 		$output .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
 
 		    if ( ! empty ( $meta_value ) ) {
 		    	if ( 'term-cabinet' == $meta_key ) {
-		    		$meta_value = '<h3><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h3>' . $meta_value;
+		    		$meta_value = '<h3>Equipe do mandato</h3>' . $meta_value;
 		    	}
 		    	$output .= '<li>'. $meta_value . '</li>';
 		    }
@@ -766,7 +765,7 @@ class Parlamentar {
 		$output .= '</ul>';
 
 		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
-			$output .= '<h2 class="parlamentar__area-title"><i class="fa fa-users"></i>&nbsp;Equipe do mandato</h2>' . $term_cabinet;
+			$output .= '<h2 class="parlamentar__area-title">Equipe do mandato</h2>' . $term_cabinet;
 		}
 
 		$output .= '</div>';
