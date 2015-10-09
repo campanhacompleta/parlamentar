@@ -1,0 +1,164 @@
+# Copyright (C) 2015 Campanha Completa
+# This file is distributed under the GPL-2.0+.
+# Translators:
+# Eduardo Zulian <eduardo@flutuante.com.br>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: Parlamentar\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/parlamentar\n"
+"POT-Creation-Date: 2015-10-09 15:17:40+00:00\n"
+"PO-Revision-Date: 2015-10-09 15:21+0000\n"
+"Last-Translator: Eduardo Zulian <eduardo@flutuante.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/campanha-completa/parlamentar/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: grunt-wp-i18n 0.5.3\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Textdomain-Support: yes\n"
+
+#: includes/class-parlamentar.php:87
+msgid "Full name"
+msgstr "Nome completo"
+
+#: includes/class-parlamentar.php:93
+msgid "Birthday"
+msgstr "Data de nascimento"
+
+#: includes/class-parlamentar.php:99
+msgid "Birthplace"
+msgstr "Naturalidade"
+
+#: includes/class-parlamentar.php:105
+msgid "Marital status"
+msgstr "Estado civil"
+
+#: includes/class-parlamentar.php:111
+msgid "Occupation"
+msgstr "Ocupação"
+
+#: includes/class-parlamentar.php:116
+msgid "Education"
+msgstr "Escolaridade"
+
+#: includes/class-parlamentar.php:121
+msgid "Political accountability URL"
+msgstr "Link para prestação de contas do mandato"
+
+#: includes/class-parlamentar.php:126
+msgid "Personal accountability URL"
+msgstr "Link para prestação de contas pessoais"
+
+#: includes/class-parlamentar.php:131 includes/class-parlamentar.php:791
+msgid "Term cabinet"
+msgstr "Equipe de gabinete"
+
+#: includes/class-parlamentar.php:136
+msgid "Address"
+msgstr "Endereço"
+
+#: includes/class-parlamentar.php:141
+msgid "Telephone"
+msgstr "Telefone"
+
+#: includes/class-parlamentar.php:146
+msgid "E-mail"
+msgstr "Email"
+
+#: includes/class-parlamentar.php:151
+msgid "Facebook"
+msgstr "Facebook"
+
+#: includes/class-parlamentar.php:156
+msgid "Twitter"
+msgstr "Twitter"
+
+#: includes/class-parlamentar.php:161
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#: includes/class-parlamentar.php:166
+msgid "Website"
+msgstr "Website"
+
+#: includes/class-parlamentar.php:231
+msgid "Parliamentarians"
+msgstr "Parlamentares"
+
+#: includes/class-parlamentar.php:232
+msgid "Parliamentarian"
+msgstr "Parlamentar"
+
+#: includes/class-parlamentar.php:234
+msgid "Add New Parliamentarian"
+msgstr "Adicionar novo(a) parlamentar"
+
+#: includes/class-parlamentar.php:235
+msgid "Edit Parliamentarian"
+msgstr "Editar parlamentar"
+
+#: includes/class-parlamentar.php:236
+msgid "View Parliamentarian"
+msgstr "Ver parlamentar"
+
+#: includes/class-parlamentar.php:237
+msgid "Search Parliamentarians"
+msgstr "Pesquisar parlamentares"
+
+#: includes/class-parlamentar.php:238
+msgid "No parliamentarians found"
+msgstr "Nenhum parlamentar encontrado"
+
+#: includes/class-parlamentar.php:239
+msgid "No parliamentarians found in Trash"
+msgstr "Nenhum parlamentar encontrado na lixeira"
+
+#: includes/class-parlamentar.php:278
+msgid "Role"
+msgstr "Cargo"
+
+#: includes/class-parlamentar.php:298
+msgid "Information"
+msgstr "Informações"
+
+#: includes/class-parlamentar.php:663
+msgid "Profile"
+msgstr "Perfil"
+
+#: includes/class-parlamentar.php:778
+msgid "Transparency"
+msgstr "Transparência"
+
+#. Plugin Name of the plugin/theme
+msgid "Parlamentar"
+msgstr "Parlamentar"
+
+#. Plugin URI of the plugin/theme
+msgid "http://github.com/campanhacompleta/parlamentar"
+msgstr "http://github.com/campanhacompleta/parlamentar"
+
+#. Description of the plugin/theme
+msgid ""
+"Register, list and display information from parliamentarians. Ideal for "
+"political parties aiming for the transparency of their representatives."
+msgstr "Cadastre, liste e exiba informações de parlamentares. Ideal para partidos políticos que visam a transparência de seus representantes."
+
+#. Author of the plugin/theme
+msgid "Campanha Completa"
+msgstr "Campanha Completa"
+
+#. Author URI of the plugin/theme
+msgid "http://campanhacompleta.com.br"
+msgstr "http://campanhacompleta.com.br"
+
+#: includes/class-parlamentar.php:233
+msgctxt "parliamentarian"
+msgid "Add New"
+msgstr "Adicionar novo(a)"
