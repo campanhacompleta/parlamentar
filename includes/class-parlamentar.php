@@ -775,7 +775,7 @@ class Parlamentar {
 			'political-accountability',
 		);
 
-		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--transparency">' . __( 'Transparência', 'parlamentar' ) . '</h2>';
+		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--transparency">' . __( 'Transparency', 'parlamentar' ) . '</h2>';
 		$output .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
