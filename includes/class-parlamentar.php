@@ -271,13 +271,13 @@ class Parlamentar {
 	 */
 	public function register_taxonomy() {
 
-		$tax_name = 'parlamentar_type';
+		$tax_name = 'parlamentar_role';
 
 		$args = array(
-			'hierarchical' => true,
-			'label' => __( 'Type' ),
-			'show_ui' => true,
-			'query_var' => true,
+			'hierarchical' 		=> true,
+			'label' 			=> __( 'Role', 'parlamentar' ),
+			'show_ui' 			=> true,
+			'query_var' 		=> true,
 			'show_admin_column' => true,
 		);
 
@@ -301,7 +301,7 @@ class Parlamentar {
 			'normal',
 			'default'
 		);
-	} 
+	}
 
 	/**
 	 * [callback_metabox_job_location description]
@@ -552,21 +552,21 @@ class Parlamentar {
 
 		$new_title = $title;
 
-		$terms = get_the_terms( $post->ID, 'parlamentar_type' );
+		$terms = get_the_terms( $post->ID, 'parlamentar_role' );
 
 		if ( $terms && ! is_wp_error( $terms ) ) {
 
-			$parlamentar_type_output = '';
+			$parlamentar_role_output = '';
 			$parlamentar_term = array();
 
 			foreach ( $terms as $term ) {
 				$parlamentar_term[] = $term->name;
 			}
 
-			$parlamentar_type_output = join( ', ', $parlamentar_term );
+			$parlamentar_role_output = join( ', ', $parlamentar_term );
 
 			$new_title .= '<span class="parlamentar__type">';
-			$new_title .= $parlamentar_type_output;
+			$new_title .= $parlamentar_role_output;
 			$new_title .= '</span>';
 		}
 
@@ -598,7 +598,7 @@ class Parlamentar {
 		if ( ! empty ( $atts['type'] ) ) {
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'parlamentar_type',
+					'taxonomy' => 'parlamentar_role',
 					'field'    => 'slug',
 					'terms'    => $atts['type'],
 				)
