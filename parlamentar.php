@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Parlamentar
  * Plugin URI:        http://github.com/campanhacompleta/parlamentar
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Register, list and display information from parliamentarians. Ideal for political parties aiming for the transparency of their representatives.
  * Version:           1.0.0
  * Author:            Campanha Completa
  * Author URI:        http://campanhacompleta.com.br
