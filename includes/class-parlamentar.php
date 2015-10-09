@@ -80,98 +80,10 @@ class Parlamentar {
 		$this->plugin_name = 'parlamentar';
 		$this->version = '1.0.0';
 
-		$this->fields_prefix = '_parlamentar-info-';
-		$this->fields = array(
-			'full-name' => array(
-				'slug' => 'full-name',
-				'title' => __( 'Full name', 'parlamentar' ),
-				'tip' => __( '', 'parlamentar' ),
-				'type' => '',
-			),
-			'birthday' => array(
-				'slug' => 'birthday',
-				'title' => __( 'Birthday', 'parlamentar' ),
-				'tip' => __( '', 'parlamentar' ),
-				'type' => 'date',
-			),
-			'birthplace' => array(
-				'slug' => 'birthplace',
-				'title' => __( 'Birthplace', 'parlamentar' ),
-				'tip' => __( '', 'parlamentar' ),
-				'type' => '',
-			),
-			'marital-status' => array(
-				'slug' => 'marital-status',
-				'title' => __( 'Marital status', 'parlamentar' ),
-				'tip' => __( '', 'parlamentar' ),
-				'type' => '',
-			),
-			'occupationo' => array(
-				'slug' => 'occupation',
-				'title' => __( 'Occupation', 'parlamentar' ),
-				'type' => '',
-			),
-			'education' => array(
-				'slug' => 'education',
-				'title' => __( 'Education', 'parlamentar' ),
-				'type' => '',
-			),
-			'political-accountability' => array(
-				'slug' => 'political-accountability',
-				'title' => __( 'Political accountability URL', 'parlamentar' ),
-				'type' => 'url',
-			),
-			'accountability' => array(
-				'slug' => 'accountability',
-				'title' => __( 'Personal accountability URL', 'parlamentar' ),
-				'type' => 'url',
-			),
-			'term-cabinet' => array(
-				'slug' => 'term-cabinet',
-				'title' => __( 'Term cabinet', 'parlamentar' ),
-				'type' => 'wp_editor',
-			),
-			'address' => array(
-				'slug' => 'address',
-				'title' => __( 'Address', 'parlamentar' ),
-				'type' => '',
-			),
-			'telephone' => array(
-				'slug' => 'telephone',
-				'title' => __( 'Telephone', 'parlamentar' ),
-				'type' => '',
-			),
-			'email' => array(
-				'slug' => 'email',
-				'title' => __( 'E-mail', 'parlamentar' ),
-				'type' => 'email',
-			),
-			'facebook' => array(
-				'slug' => 'facebook',
-				'title' => __( 'Facebook', 'parlamentar' ),
-				'type' => 'url',
-			),
-			'twitter' => array(
-				'slug' => 'twitter',
-				'title' => __( 'Twitter', 'parlamentar' ),
-				'type' => 'url',
-			),
-			'wikipedia' => array(
-				'slug' => 'wikipedia',
-				'title' => __( 'Wikipedia', 'parlamentar' ),
-				'type' => 'url',
-			),
-			'website' => array(
-				'slug' => 'website',
-				'title' => __( 'Website', 'parlamentar' ),
-				'type' => 'url',
-			),
-
-		);
-
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) ) ;
 
 		/* Admin hooks */
+		add_action( 'init', array( $this, 'define_parlamentar_fields' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
@@ -195,6 +107,101 @@ class Parlamentar {
 		add_action( 'parlamentar_the_top_info', array( $this, 'parlamentar_the_top_info' ) );
 		add_action( 'parlamentar_the_transparency_info', array( $this, 'parlamentar_the_transparency_info' ) );
 
+	}
+
+	/**
+	 * Defines the fields that will be used
+	 */
+	function define_parlamentar_fields() {
+
+		$this->fields_prefix = '_parlamentar-info-';
+		$this->fields = array(
+			'full-name' => array(
+				'slug'	=> 'full-name',
+				'title'	=> __( 'Full name', 'parlamentar' ),
+				'tip'	=> __( '', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'birthday'	=> array(
+				'slug'	=> 'birthday',
+				'title'	=> __( 'Birthday', 'parlamentar' ),
+				'tip'	=> __( '', 'parlamentar' ),
+				'type'	=> 'date',
+			),
+			'birthplace' => array(
+				'slug'	=> 'birthplace',
+				'title'	=> __( 'Birthplace', 'parlamentar' ),
+				'tip'	=> __( '', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'marital-status' => array(
+				'slug'	=> 'marital-status',
+				'title'	=> __( 'Marital status', 'parlamentar' ),
+				'tip'	=> __( '', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'occupationo' => array(
+				'slug'	=> 'occupation',
+				'title'	=> __( 'Occupation', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'education'	=> array(
+				'slug'	=> 'education',
+				'title'	=> __( 'Education', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'political-accountability' => array(
+				'slug'	=> 'political-accountability',
+				'title'	=> __( 'Political accountability URL', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+			'accountability' => array(
+				'slug'	=> 'accountability',
+				'title'	=> __( 'Personal accountability URL', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+			'term-cabinet'	=> array(
+				'slug'	=> 'term-cabinet',
+				'title'	=> __( 'Term cabinet', 'parlamentar' ),
+				'type'	=> 'wp_editor',
+			),
+			'address'	=> array(
+				'slug'	=> 'address',
+				'title'	=> __( 'Address', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'telephone'	=> array(
+				'slug'	=> 'telephone',
+				'title'	=> __( 'Telephone', 'parlamentar' ),
+				'type'	=> '',
+			),
+			'email'	=> array(
+				'slug'	=> 'email',
+				'title'	=> __( 'E-mail', 'parlamentar' ),
+				'type'	=> 'email',
+			),
+			'facebook'	=> array(
+				'slug'	=> 'facebook',
+				'title'	=> __( 'Facebook', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+			'twitter'	=> array(
+				'slug'	=> 'twitter',
+				'title'	=> __( 'Twitter', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+			'wikipedia'	=> array(
+				'slug'	=> 'wikipedia',
+				'title'	=> __( 'Wikipedia', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+			'website'	=> array(
+				'slug'	=> 'website',
+				'title'	=> __( 'Website', 'parlamentar' ),
+				'type'	=> 'url',
+			),
+
+		);
 	}
 
 	/**
