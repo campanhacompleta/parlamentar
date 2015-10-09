@@ -575,7 +575,7 @@ class Parlamentar {
 	}
 
 	/**
-	 * Create a shortcode to list posts and create an archive of parlamentarians
+	 * Create a shortcode to list posts and create an archive of parliamentarians
 	 * 
 	 * @since	1.0.0
 	 * @param 	string  $atts  The shortcode attributes
