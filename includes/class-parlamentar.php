@@ -84,66 +84,66 @@ class Parlamentar {
 		$this->fields = array(
 			'full-name' => array(
 				'slug' => 'full-name',
-				'title' => __( 'Nome completo', 'parlamentar' ),
+				'title' => __( 'Full name', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
 			'birthday' => array(
 				'slug' => 'birthday',
-				'title' => __( 'Data de nascimento', 'parlamentar' ),
+				'title' => __( 'Birthday', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => 'date',
 			),
 			'birthplace' => array(
 				'slug' => 'birthplace',
-				'title' => __( 'Naturalidade', 'parlamentar' ),
+				'title' => __( 'Birthplace', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
 			'marital-status' => array(
 				'slug' => 'marital-status',
-				'title' => __( 'Estado civil', 'parlamentar' ),
+				'title' => __( 'Marital status', 'parlamentar' ),
 				'tip' => __( '', 'parlamentar' ),
 				'type' => '',
 			),
 			'occupationo' => array(
 				'slug' => 'occupation',
-				'title' => __( 'Ocupação', 'parlamentar' ),
+				'title' => __( 'Occupation', 'parlamentar' ),
 				'type' => '',
 			),
 			'education' => array(
 				'slug' => 'education',
-				'title' => __( 'Escolaridade', 'parlamentar' ),
+				'title' => __( 'Education', 'parlamentar' ),
 				'type' => '',
 			),
 			'political-accountability' => array(
 				'slug' => 'political-accountability',
-				'title' => __( 'Link para prestação de contas do mandato', 'parlamentar' ),
+				'title' => __( 'Political accountability URL', 'parlamentar' ),
 				'type' => 'url',
 			),
 			'accountability' => array(
 				'slug' => 'accountability',
-				'title' => __( 'Link para prestação de contas ao TRE', 'parlamentar' ),
+				'title' => __( 'Personal accountability URL', 'parlamentar' ),
 				'type' => 'url',
 			),
 			'term-cabinet' => array(
 				'slug' => 'term-cabinet',
-				'title' => __( 'Equipe do mandato', 'parlamentar' ),
+				'title' => __( 'Term cabinet', 'parlamentar' ),
 				'type' => 'wp_editor',
 			),
 			'address' => array(
 				'slug' => 'address',
-				'title' => __( 'Endereço', 'parlamentar' ),
+				'title' => __( 'Address', 'parlamentar' ),
 				'type' => '',
 			),
 			'telephone' => array(
 				'slug' => 'telephone',
-				'title' => __( 'Telefone', 'parlamentar' ),
+				'title' => __( 'Telephone', 'parlamentar' ),
 				'type' => '',
 			),
 			'email' => array(
 				'slug' => 'email',
-				'title' => __( 'Email', 'parlamentar' ),
+				'title' => __( 'E-mail', 'parlamentar' ),
 				'type' => 'email',
 			),
 			'facebook' => array(
@@ -226,28 +226,38 @@ class Parlamentar {
 	 * @uses 	register_post_type()
 	 */
 	public function register_post_type() {
-	
-		$args = array(
-			'label' => __( 'Parlamentar','fluxo' ),
-			'description' => __( 'Parlamentar','fluxo' ),
-			'public' => true,
-			'publicly_queryable' => true, // public
-			//'exclude_from_search' => '', // public
-			'show_ui' => true, // public
-			'show_in_menu' => true,
-			'menu_position' => 5,
-			'menu_icon' => 'dashicons-businessman',
-			'capability_type' => 'post',
-			'map_meta_cap' => true,
-			'hierarchical' => false,
-			'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
-			'permalink_epmask' => 'EP_PERMALINK ',
-			'has_archive' => true,
-			'rewrite' => true,
-			'query_var' => true,
-			'can_export' => true
+
+		$labels = array(
+			'name' 					=> __( 'Parliamentarians', 'parlamentar' ),
+			'singular_name' 		=> __( 'Parliamentarian', 'parlamentar' ),
+			'add_new' 				=> _x( 'Add New', 'parliamentarian', 'parlamentar' ),
+			'add_new_item' 			=> __( 'Add New Parliamentarian', 'parlamentar' ),
+			'edit_item' 			=> __( 'Edit Parliamentarian', 'parlamentar' ),
+			'view_item' 			=> __( 'View Parliamentarian', 'parlamentar' ),
+			'search_items' 			=> __( 'Search Parliamentarians', 'parlamentar' ),
+			'not_found'				=> __( 'No parliamentarians found', 'parlamentar' ),
+			'not_found_in_trash'	=> __( 'No parliamentarians found in Trash', 'parlamentar' ),
 		);
-	
+
+		$args = array(
+			'labels' 				=> $labels,
+			'public' 				=> true,
+			'publicly_queryable' 	=> true,
+			'show_ui' 				=> true,
+			'show_in_menu' 			=> true,
+			'menu_position' 		=> 5,
+			'menu_icon' 			=> 'dashicons-businessman',
+			'capability_type' 		=> 'post',
+			'map_meta_cap' 			=> true,
+			'hierarchical' 			=> false,
+			'supports' 				=> array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			'permalink_epmask' 		=> 'EP_PERMALINK ',
+			'has_archive' 			=> true,
+			'rewrite' 				=> true,
+			'query_var' 			=> true,
+			'can_export' 			=> true
+		);
+
 		register_post_type( 'parlamentar', $args );
 
 	}
@@ -350,27 +360,26 @@ class Parlamentar {
 	 */
 	public function save_post( $post_id ) {
 
-		
 		// Check if our nonce is set.
 		if ( ! isset( $_POST['parlamentar_nonce'] ) ) {
 			return $post_id;
 		}
-		
+
 		// Verify that the nonce is valid
 		if ( ! wp_verify_nonce( $_POST['parlamentar_nonce'], $this->plugin_name ) ) {
 			return $post_id;
 		}
-		
+
 		// The form is not submitted yet
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return $post_id;
 		}
-		
+
 		// Check the user's permissions
 		if ( 'parlamentar' !== $_POST['post_type'] ) {
 				return $post_id;
 		}
-	
+
 		// Save the data
 		foreach ( $this->fields as $key => $field ) {
 			$slug = $this->fields_prefix . $field['slug'];
@@ -651,7 +660,7 @@ class Parlamentar {
 		remove_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
 
 		$output = '<div class="parlamentar__biography">';
-		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--biography">Perfil</h2>';
+		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--biography">' . __( 'Profile', 'parlamentar' ) . '</h2>';
 		$output .= apply_filters('the_content', $post->post_content);
 		$output .= '</div>';
 
@@ -766,7 +775,7 @@ class Parlamentar {
 			'political-accountability',
 		);
 
-		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--transparency">Transparência</h2>';
+		$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--transparency">' . __( 'Transparência', 'parlamentar' ) . '</h2>';
 		$output .= '<ul class="parlamentar__meta-list">';
 		foreach( $metas_array as $meta_key ) {
 			$meta_value = $this->get_parlamentar_meta( $meta_key );
@@ -779,7 +788,7 @@ class Parlamentar {
 		$output .= '</ul>';
 
 		if ( $term_cabinet = $this->get_parlamentar_meta( 'term-cabinet' ) ) {
-			$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--term-cabinet">Equipe do mandato</h2>' . $term_cabinet;
+			$output .= '<h2 class="parlamentar__area-title parlamentar__area-title--term-cabinet">' . __( 'Term cabinet', 'parlamentar' ) . '</h2>' . $term_cabinet;
 		}
 
 		$output .= '</div>';
