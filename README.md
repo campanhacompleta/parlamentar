@@ -37,3 +37,10 @@ Para listar os parlamentares de uma certa categoria / tipo:
 ```
 [parlamentar type="nome-da-categoria"]
 ```
+## Traduções
+* Inglês
+* Português Brasileiro
+
+
+## Como contribuir
+* Para ajudar nas traduções, acesse o projeto [Parlamentar dentro do Transifex](https://www.transifex.com/campanha-completa/parlamentar/)
