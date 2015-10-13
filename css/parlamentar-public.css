@@ -17,6 +17,7 @@
 .parlamentar__list {
 	display: table;
 	margin-bottom: 1.5rem;
+	width: 100%;
 }
 
  .parlamentar__info {
