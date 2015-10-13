@@ -35,7 +35,7 @@ Para listar os parlamentares em uma página, basta usar os shortcodes do WordPre
 
 Para listar os parlamentares de uma certa categoria / tipo:
 ```
-[parlamentar type="nome-da-categoria"]
+[parlamentar role="nome-da-categoria"]
 ```
 ## Traduções
 * Inglês

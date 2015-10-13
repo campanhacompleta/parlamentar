@@ -592,7 +592,7 @@ class Parlamentar {
 		global $post;
 
 		$atts = shortcode_atts( array(
-			'type' => '',
+			'role' => '',
 		), $atts, 'parlamentar' );
 
 		$output = '';
@@ -602,12 +602,12 @@ class Parlamentar {
 			'posts_per_page' => '-1',
 		);
 
-		if ( ! empty ( $atts['type'] ) ) {
+		if ( ! empty ( $atts['role'] ) ) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' => 'parlamentar_role',
 					'field'    => 'slug',
-					'terms'    => $atts['type'],
+					'terms'    => $atts['role'],
 				)
 			);
 		}
