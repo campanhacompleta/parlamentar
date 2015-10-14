@@ -88,6 +88,7 @@ class Parlamentar {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
@@ -335,8 +336,9 @@ class Parlamentar {
 			?>
 			<p>
 				<label for="<?php echo $slug; ?>"><?php echo $info['title']; ?></label>
-				<?php if ( $info['type'] == 'wp_editor' ) : ?>
-					<?php
+				<?php
+				switch ( $info['type'] ) {
+					case 'wp_editor':
 						wp_editor(
 							$value,
 							$slug,
@@ -346,10 +348,19 @@ class Parlamentar {
 								'teeny'			=> true
 							)
 						);
-					?>
-				<?php else : ?>
-					<input class="widefat" type="text" name="<?php echo $slug; ?>" id="<?php echo $slug; ?>" value="<?php echo esc_attr( $value ); ?>" />
-				<?php endif; ?>
+						break;
+
+					case 'date' : ?>
+						<input class="widefat js-parlamentar-datepicker" type="text" name="<?php echo $slug; ?>" id="<?php echo $slug; ?>" value="<?php echo esc_attr( $value ); ?>" />
+						<?php
+						break;
+
+					default : ?>
+						<input class="widefat" type="text" name="<?php echo $slug; ?>" id="<?php echo $slug; ?>" value="<?php echo esc_attr( $value ); ?>" />
+						<?php
+						break;
+				}
+				?>
 			</p>
 
 		<?php
@@ -424,6 +435,19 @@ class Parlamentar {
 	 */
 	public function add_image_sizes() {
 		add_image_size( 'parlamentar-archive', 250, 250, true );
+	}
+
+	/**
+	 * Register scripts and stylesheets for the admin-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function admin_enqueue_scripts() {
+
+		wp_enqueue_style( $this->plugin_name . '-datepicker', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css', array(), $this->version, 'all' );
+		wp_enqueue_script('jquery-ui-datepicker');
+		wp_enqueue_script( 'my_custom_script', plugin_dir_url( dirname( __FILE__ ) ) . 'js/parlamentar-admin.js' );
+
 	}
 
 	/**
