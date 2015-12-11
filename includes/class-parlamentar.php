@@ -141,7 +141,7 @@ class Parlamentar {
 				'tip'	=> __( '', 'parlamentar' ),
 				'type'	=> '',
 			),
-			'occupationo' => array(
+			'occupation' => array(
 				'slug'	=> 'occupation',
 				'title'	=> __( 'Occupation', 'parlamentar' ),
 				'type'	=> '',
