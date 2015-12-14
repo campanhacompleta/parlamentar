@@ -531,6 +531,9 @@ class Parlamentar {
 
 						default :
 							$output .= $meta_title . ': ' . $meta_value;
+							if ( 'birthday' == $meta_field['slug'] ) {
+								$output .= ' (' . sprintf( __( '%d years', 'parlamentar'), $this->get_age( $meta_value ) ) . ')';
+							}
 							break;
 					}
 
@@ -837,6 +840,15 @@ class Parlamentar {
 		$output .= '</div>';
 
 		return $output;
+	}
+
+	/**
+	 * Get age from birthday
+	 */
+	function get_age( $then ) {
+	    $then = date( 'Ymd', strtotime( $then ) );
+	    $diff = date( 'Ymd' ) - $then;
+	    return substr( $diff, 0, -4 );
 	}
 
 }
