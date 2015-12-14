@@ -151,6 +151,11 @@ class Parlamentar {
 				'title'	=> __( 'Education', 'parlamentar' ),
 				'type'	=> '',
 			),
+			'city-of-work'	=> array(
+				'slug'	=> 'city-of-work',
+				'title'	=> __( 'City of work', 'parlamentar' ),
+				'type'	=> '',
+			),
 			'political-accountability' => array(
 				'slug'	=> 'political-accountability',
 				'title'	=> __( 'Political accountability URL', 'parlamentar' ),
@@ -596,8 +601,15 @@ class Parlamentar {
 
 			$parlamentar_role_output = join( ', ', $parlamentar_term );
 
+			$city = get_post_meta( $post->ID, '_parlamentar-info-city-of-work', true );
+
 			$new_title .= '<span class="parlamentar__type">';
 			$new_title .= $parlamentar_role_output;
+
+			if ( !empty ( $city ) ) {
+				$new_title .=  ' (' . $city . ')';
+			}
+
 			$new_title .= '</span>';
 		}
 
