@@ -92,6 +92,7 @@ class Parlamentar {
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
+		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
 
 		/* Public hooks */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -840,6 +841,56 @@ class Parlamentar {
 		$output .= '</div>';
 
 		return $output;
+	}
+
+	/**
+	 * Parliamentarian update messages.
+	 *
+	 * See /wp-admin/edit-form-advanced.php
+	 *
+	 * @param array $messages Existing post update messages.
+	 *
+	 * @return array Amended post update messages with new CPT update messages.
+	 */
+	function post_updated_messages( $messages ) {
+		$post = get_post();
+		$post_type = get_post_type( $post );
+		$post_type_object = get_post_type_object( $post_type );
+
+		$messages['parlamentar'] = array(
+			0  => '', // Unused. Messages start at index 1.
+			1  => __( 'Parliamentarian updated.', 'parlamentar' ),
+			2  => __( 'Custom field updated.', 'parlamentar' ),
+			3  => __( 'Custom field deleted.', 'parlamentar' ),
+			4  => __( 'Parliamentarian updated.', 'parlamentar' ),
+			/* translators: %s: date and time of the revision */
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Parliamentarian restored to revision from %s', 'parlamentar' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6  => __( 'Parliamentarian published.', 'parlamentar' ),
+			7  => __( 'Parliamentarian saved.', 'parlamentar' ),
+			8  => __( 'Parliamentarian submitted.', 'parlamentar' ),
+			9  => sprintf(
+				__( 'Parliamentarian scheduled for: <strong>%1$s</strong>.', 'parlamentar' ),
+				// translators: Publish box date format, see http://php.net/date
+				date_i18n( __( 'M j, Y @ G:i', 'parlamentar' ), strtotime( $post->post_date ) )
+			),
+			10 => __( 'Parliamentarian draft updated.', 'parlamentar' )
+		);
+
+		if ( $post_type_object->publicly_queryable ) {
+			$permalink = get_permalink( $post->ID );
+
+			$view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), __( 'View Parliamentarian', 'parlamentar' ) );
+			$messages[ $post_type ][1] .= $view_link;
+			$messages[ $post_type ][6] .= $view_link;
+			$messages[ $post_type ][9] .= $view_link;
+
+			$preview_permalink = add_query_arg( 'preview', 'true', $permalink );
+			$preview_link = sprintf( ' <a target="_blank" href="%s">%s</a>', esc_url( $preview_permalink ), __( 'Preview parliamentarian', 'parlamentar' ) );
+			$messages[ $post_type ][8]  .= $preview_link;
+			$messages[ $post_type ][10] .= $preview_link;
+		}
+
+		return $messages;
 	}
 
 	/**
