@@ -445,7 +445,17 @@ class Parlamentar {
 	 *
 	 * @since    1.0.0
 	 */
-	public function admin_enqueue_scripts() {
+	public function admin_enqueue_scripts( $hook ) {
+
+		global $post;
+
+		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ) ) ) {
+	        return;
+	    }
+
+	    if ( 'parlamentar' != $post->post_type ) {
+	    	return;
+	    }
 
 		wp_enqueue_style( $this->plugin_name . '-datepicker', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css', array(), $this->version, 'all' );
 		wp_enqueue_script('jquery-ui-datepicker');
