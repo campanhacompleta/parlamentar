@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Parlamentar\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/parlamentar\n"
-"POT-Creation-Date: 2015-10-09 15:17:40+00:00\n"
-"PO-Revision-Date: 2015-10-09 15:21+0000\n"
+"POT-Creation-Date: 2015-12-14 17:07:32+00:00\n"
+"PO-Revision-Date: 2015-12-14 17:35+0000\n"
 "Last-Translator: Eduardo Zulian <eduardo@flutuante.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/campanha-completa/parlamentar/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -24,117 +24,171 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Textdomain-Support: yes\n"
 
-#: includes/class-parlamentar.php:87
+#: includes/class-parlamentar.php:123
 msgid "Full name"
 msgstr "Nome completo"
 
-#: includes/class-parlamentar.php:93
+#: includes/class-parlamentar.php:129
 msgid "Birthday"
 msgstr "Data de nascimento"
 
-#: includes/class-parlamentar.php:99
+#: includes/class-parlamentar.php:135
 msgid "Birthplace"
 msgstr "Naturalidade"
 
-#: includes/class-parlamentar.php:105
+#: includes/class-parlamentar.php:141
 msgid "Marital status"
 msgstr "Estado civil"
 
-#: includes/class-parlamentar.php:111
+#: includes/class-parlamentar.php:147
 msgid "Occupation"
 msgstr "Ocupação"
 
-#: includes/class-parlamentar.php:116
+#: includes/class-parlamentar.php:152
 msgid "Education"
 msgstr "Escolaridade"
 
-#: includes/class-parlamentar.php:121
+#: includes/class-parlamentar.php:157
+msgid "City of work"
+msgstr "Cidade de atuação"
+
+#: includes/class-parlamentar.php:162
 msgid "Political accountability URL"
 msgstr "Link para prestação de contas do mandato"
 
-#: includes/class-parlamentar.php:126
+#: includes/class-parlamentar.php:167
 msgid "Personal accountability URL"
 msgstr "Link para prestação de contas pessoais"
 
-#: includes/class-parlamentar.php:131 includes/class-parlamentar.php:791
+#: includes/class-parlamentar.php:172 includes/class-parlamentar.php:838
 msgid "Term cabinet"
 msgstr "Equipe de gabinete"
 
-#: includes/class-parlamentar.php:136
+#: includes/class-parlamentar.php:177
 msgid "Address"
 msgstr "Endereço"
 
-#: includes/class-parlamentar.php:141
+#: includes/class-parlamentar.php:182
 msgid "Telephone"
 msgstr "Telefone"
 
-#: includes/class-parlamentar.php:146
+#: includes/class-parlamentar.php:187
 msgid "E-mail"
 msgstr "Email"
 
-#: includes/class-parlamentar.php:151
+#: includes/class-parlamentar.php:192
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/class-parlamentar.php:156
+#: includes/class-parlamentar.php:197
 msgid "Twitter"
 msgstr "Twitter"
 
-#: includes/class-parlamentar.php:161
+#: includes/class-parlamentar.php:202
 msgid "Wikipedia"
 msgstr "Wikipedia"
 
-#: includes/class-parlamentar.php:166
+#: includes/class-parlamentar.php:207
 msgid "Website"
 msgstr "Website"
 
-#: includes/class-parlamentar.php:231
+#: includes/class-parlamentar.php:245
 msgid "Parliamentarians"
 msgstr "Parlamentares"
 
-#: includes/class-parlamentar.php:232
+#: includes/class-parlamentar.php:246
 msgid "Parliamentarian"
 msgstr "Parlamentar"
 
-#: includes/class-parlamentar.php:234
+#: includes/class-parlamentar.php:248
 msgid "Add New Parliamentarian"
 msgstr "Adicionar novo(a) parlamentar"
 
-#: includes/class-parlamentar.php:235
+#: includes/class-parlamentar.php:249
 msgid "Edit Parliamentarian"
 msgstr "Editar parlamentar"
 
-#: includes/class-parlamentar.php:236
+#: includes/class-parlamentar.php:250 includes/class-parlamentar.php:882
 msgid "View Parliamentarian"
 msgstr "Ver parlamentar"
 
-#: includes/class-parlamentar.php:237
+#: includes/class-parlamentar.php:251
 msgid "Search Parliamentarians"
 msgstr "Pesquisar parlamentares"
 
-#: includes/class-parlamentar.php:238
+#: includes/class-parlamentar.php:252
 msgid "No parliamentarians found"
 msgstr "Nenhum parlamentar encontrado"
 
-#: includes/class-parlamentar.php:239
+#: includes/class-parlamentar.php:253
 msgid "No parliamentarians found in Trash"
 msgstr "Nenhum parlamentar encontrado na lixeira"
 
-#: includes/class-parlamentar.php:278
+#: includes/class-parlamentar.php:292
 msgid "Role"
 msgstr "Cargo"
 
-#: includes/class-parlamentar.php:298
+#: includes/class-parlamentar.php:312
 msgid "Information"
 msgstr "Informações"
 
-#: includes/class-parlamentar.php:663
+#: includes/class-parlamentar.php:536
+msgid "%d years"
+msgstr "%d anos"
+
+#: includes/class-parlamentar.php:710
 msgid "Profile"
 msgstr "Perfil"
 
-#: includes/class-parlamentar.php:778
+#: includes/class-parlamentar.php:825
 msgid "Transparency"
 msgstr "Transparência"
+
+#: includes/class-parlamentar.php:862 includes/class-parlamentar.php:865
+msgid "Parliamentarian updated."
+msgstr "Parlamentar atualizado."
+
+#: includes/class-parlamentar.php:863
+msgid "Custom field updated."
+msgstr "Campo personalizado atualizado."
+
+#: includes/class-parlamentar.php:864
+msgid "Custom field deleted."
+msgstr "Campo personalizado excluído."
+
+#. translators: %s: date and time of the revision
+#: includes/class-parlamentar.php:867
+msgid "Parliamentarian restored to revision from %s"
+msgstr "Informações do parlamentar restauradas da revisão de %s"
+
+#: includes/class-parlamentar.php:868
+msgid "Parliamentarian published."
+msgstr "Parlamentar publicado."
+
+#: includes/class-parlamentar.php:869
+msgid "Parliamentarian saved."
+msgstr "Parlamentar salvo."
+
+#: includes/class-parlamentar.php:870
+msgid "Parliamentarian submitted."
+msgstr "Parlamentar enviado."
+
+#: includes/class-parlamentar.php:872
+msgid "Parliamentarian scheduled for: <strong>%1$s</strong>."
+msgstr "Parlamentar agendado para: <strong>%1$s</strong>."
+
+#. translators: Publish box date format, see http:php.net/date
+#: includes/class-parlamentar.php:874
+msgid "M j, Y @ G:i"
+msgstr "d/m/y às H:i"
+
+#: includes/class-parlamentar.php:876
+msgid "Parliamentarian draft updated."
+msgstr "Rascunho do parlamentar atualizado."
+
+#: includes/class-parlamentar.php:888
+msgid "Preview parliamentarian"
+msgstr "Visualizar parlamentar"
 
 #. Plugin Name of the plugin/theme
 msgid "Parlamentar"
@@ -158,7 +212,7 @@ msgstr "Campanha Completa"
 msgid "http://campanhacompleta.com.br"
 msgstr "http://campanhacompleta.com.br"
 
-#: includes/class-parlamentar.php:233
+#: includes/class-parlamentar.php:247
 msgctxt "parliamentarian"
 msgid "Add New"
 msgstr "Adicionar novo(a)"
