@@ -494,7 +494,7 @@ class Parlamentar {
 
 					switch ( $meta_type ) {
 						case 'url' :
-							$output .= '<a href="' . $meta_value . '">' . $meta_title . '</a>';
+							$output .= '<a href="' . $meta_value . '" target="_blank">' . $meta_title . '</a>';
 							break;
 
 						case 'email' :
