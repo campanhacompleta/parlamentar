@@ -97,9 +97,6 @@ class Parlamentar {
 		/* Public hooks */
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
-		//add_filter( 'template_include', array( $this, 'include_single_template' ) );
-		add_filter( 'archive_template', array( $this, 'include_archive_template' ) );
-
 		add_filter( 'the_content', array( $this, 'add_parlamentar_info_to_content' ) );
 		add_filter( 'the_title', array( $this, 'add_parlamentar_info_to_title' ) );
 
@@ -464,38 +461,6 @@ class Parlamentar {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'css/parlamentar-public.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Verify if the appropriate single-parlamentar.php template is present in active template directory
-	 * Otherwise it will use the template present in plugin's directory
-	 * 
-	 * @since	1.0.0
-	 * @uses locate_template()
-	 */
-	function include_single_template( $template ) {
-
-	    if ( is_singular( 'parlamentar' ) && locate_template( array( 'single-parlamentar.php' ) ) == '' ) {
-	        $template = dirname( dirname( __FILE__  ) ) . '/templates/single-parlamentar.php';
-	    }
-
-	    return $template;
-
-	}
-
-	/**
-	 * Include archive template file
-	 * 
-	 * @since	1.0.0
-	 */
-	function include_archive_template( $template ) {
-
-	    if ( is_post_type_archive ( 'parlamentar' ) ) {
-	        $template = dirname( dirname( __FILE__ ) ) . '/templates/archive-parlamentar.php';
-	    }
-
-	    return $template;
 
 	}
 
