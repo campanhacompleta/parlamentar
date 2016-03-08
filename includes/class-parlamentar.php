@@ -872,8 +872,10 @@ class Parlamentar {
 	 * Get age from birthday
 	 */
 	function get_age( $then ) {
-	    $then = date( 'Ymd', strtotime( $then ) );
-	    $diff = date( 'Ymd' ) - $then;
+		$birthday = str_replace( '/', '-', $then) ;
+	    $birthday = date( 'Ymd', strtotime( $birthday ) );
+	    $diff = date( 'Ymd' ) - $birthday;
+
 	    return substr( $diff, 0, -4 );
 	}
 
