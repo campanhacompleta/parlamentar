@@ -438,6 +438,7 @@ class Parlamentar {
 	 */
 	public function add_image_sizes() {
 		add_image_size( 'parlamentar-archive', 250, 250, true );
+		add_image_size( 'parlamentar-main', 640, 480, true );
 	}
 
 	/**
